@@ -1,0 +1,25 @@
+import User from "../modules/user";
+
+
+const creatUserService = {
+  async execute(userData: { name: string; email: string; days?: [] }) {
+    // Verifica se o e-mail já está cadastrado
+    const existingUser = await User.findOne({ email: userData.email });
+
+    if (existingUser) {
+      throw new Error('Usuário com esse e-mail já existe.');
+    }
+
+    // Cria um novo usuário
+    const newUser = new User({
+      name: userData.name,
+      email: userData.email,
+      days: userData.days || [],
+    });
+
+    await newUser.save();
+    return newUser;
+  },
+};
+
+export default creatUserService;
