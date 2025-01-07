@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import createUserService from "../services/createUserService";
 
 
-export default async function createUser(req: Request, res: Response): Promise<void> {
+export default async function createUserController(req: Request, res: Response): Promise<void> {
     const userData = req.body;
   
     try {

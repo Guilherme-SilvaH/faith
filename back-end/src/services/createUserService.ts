@@ -2,7 +2,7 @@ import User from "../modules/user";
 
 
 const creatUserService = {
-  async execute(userData: { name: string; email: string; days?: [] }) {
+  async execute(userData: { name: string; email: string; password:string; days?: [] }) {
     // Verifica se o e-mail já está cadastrado
     const existingUser = await User.findOne({ email: userData.email });
 
@@ -14,6 +14,7 @@ const creatUserService = {
     const newUser = new User({
       name: userData.name,
       email: userData.email,
+      password: userData.password,
       days: userData.days || [],
     });
 

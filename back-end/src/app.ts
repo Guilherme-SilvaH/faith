@@ -1,8 +1,26 @@
 import express from 'express';
+import cors from 'cors';
+import userRouter from './routes/userRouter';
+import { connectDB } from './config/db';
 
-const app = express()
+const app = express();
 
-app.use(express.json())
-const PORT = process.env.PORT || 5000
+// Habilitar CORS antes das rotas
+app.use(cors({
+  origin: 'http://localhost:5173',  // Permite apenas a origem do seu front-end
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Define os métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Permite cabeçalhos necessários
+}));
 
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+app.use(express.json()); // Middleware para processar requisições JSON
+
+// Roteador de usuários
+app.use('/api/user', userRouter);
+
+// Conectar ao banco de dados MongoDB
+connectDB();
+
+// Iniciar o servidor
+app.listen(5000, () => {
+  console.log('Servidor rodando em http://localhost:5000');
+});
