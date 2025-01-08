@@ -1,13 +1,20 @@
+import { useState } from "react";
+
 import "./cadastro.sass";
+import Buttom from "../componets/buttom/buttom";
 
 export default function Cadastro() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <>
       <div className="divPai-container">
         <div className="divpai-formulario">
           <div className="dados-cadastro">
             <h1 className="form_title" id="id-cadastro">
-              Cadastro
+              Crie uma nova conta!
             </h1>
           </div>
           <div className="main-form">
@@ -19,6 +26,8 @@ export default function Cadastro() {
                 className="form_input"
                 id="nome"
                 placeholder="Nome"
+                value={name}
+                onChange={(e) => setName(e.target.value)} // Atualizar estado
                 required
               />
             </div>
@@ -30,6 +39,8 @@ export default function Cadastro() {
                 className="form_input"
                 id="Email"
                 placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} // Atualizar estado
                 required
               />
             </div>
@@ -41,8 +52,14 @@ export default function Cadastro() {
                 className="form_input"
                 id="Password"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} // Atualizar estado
                 required
               />
+            </div>
+            <div className="container-bottom">
+              {/* Passar os dados e a função para o botão */}
+              <Buttom name={name} email={email} password={password} />
             </div>
           </div>
         </div>
