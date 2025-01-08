@@ -1,0 +1,84 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap')
+    
+    
+    
+body 
+    margin: 0
+    padding: 0
+    overflow: hidden
+    height: 100vh
+    
+    .divPai-container
+        display: flex
+        justify-content: center
+        align-items: center
+        background-color: rgb(250, 241, 241)
+        height: 100vh
+        flex-direction: column
+        background: linear-gradient(135deg,  #7843e6, lighten( #7843e6, 20%))
+
+        .divpai-formulario
+            background-color: rgb(255, 255, 255)
+            width: 25%
+            height: 50rem
+            border-radius: 20px
+            font-family: "Bungee", serif
+
+            .dados-cadastro
+                display: flex
+                justify-content: center
+                align-items: center
+                display: flex
+                height: 12rem
+
+            .form_title
+                font-family: "Open Sans", serif
+                font-size: 40px
+
+            .dados-formulario
+                flex-direction: column
+                display: flex
+                justify-content: center
+                align-items: center
+                display: flex
+
+                #label
+                    display: flex
+                    align-self: start
+
+                .form_label
+                    font-size: 1rem
+                    padding: 1.2rem
+                    color: #7843e6
+
+                .form_input
+                    width: 88%
+                    padding: 10px 15px
+                    font-size: 14px
+                    border: 2px solid #ccc
+                    border-radius: 8px
+                    outline: none
+                    transition: border-color 0.3s, box-shadow 0.3s
+                    background-color: #f9f9f9
+                    color: #333
+
+                   
+                    &::placeholder 
+                      color: #aaa
+                      font-style: italic
+                  
+                    
+                   
+                    &:focus 
+                      border-color: #7843e6
+                      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5)
+                      background-color: #fff
+                    
+                    
+                   
+                    &:hover 
+                      border-color: #7843e6
+                   
+
+                    
