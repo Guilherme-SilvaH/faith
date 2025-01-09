@@ -51,7 +51,7 @@ export default function Login() {
               <Buttom email={email} password={password} action="login" />
             </div>
             <div className="nao-tem-uma-conta">
-            <a href="https://my-bible-reader.vercel.app/">Nao tem uma conta?</a>
+            <a href="https://my-bible-reader.vercel.app/cadastro">Nao tem uma conta?</a>
             </div>
         </div>
         </div>
