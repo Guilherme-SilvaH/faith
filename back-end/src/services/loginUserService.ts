@@ -23,7 +23,10 @@ const loginUserService = {
       name: existingUser.name,
       email: existingUser.email,
       days: existingUser.days,
+      
     };
+
+  
   },
 };
 

@@ -59,7 +59,10 @@ export default function Cadastro() {
             </div>
             <div className="container-bottom">
               {/* Passar os dados e a função para o botão */}
-              <Buttom name={name} email={email} password={password} />
+              <Buttom name={name} email={email} password={password} action="cadastro" />
+            </div>
+            <div className="ja-tem-uma-conta">
+              <a href="http://localhost:5173/login">Já tem uma conta?</a>
             </div>
           </div>
         </div>

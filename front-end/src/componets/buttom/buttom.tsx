@@ -1,37 +1,45 @@
+import React from "react";
 import axios from "axios";
 import "./buttos.sass";
 
-const baseUrl = "http://localhost:5000/api/user/cadastro";
-
 // Interface para as props
 interface ButtomProps {
-  name: string;
+  name?: string;  // name é opcional para o login
   email: string;
   password: string;
+  action: "cadastro" | "login"; // nova prop para decidir qual ação
 }
 
-export default function Buttom({ name, email, password }: ButtomProps) {
-  const handleClickRegister = async () => {
-    try {
-      const response = await axios.post(baseUrl, {
-        name,
-        email,
-        password,
-        days: [], 
-      });
+const baseUrlCadastro = "http://localhost:5000/api/user/cadastro";
+const baseUrlLogin = "http://localhost:5000/api/user/login";
 
-      alert("Cadastro realizado com sucesso!");
-      
+export default function Buttom({ name, email, password, action }: ButtomProps) {
+  const handleClick = async () => {
+    try {
+      const baseUrl = action === "cadastro" ? baseUrlCadastro : baseUrlLogin;
+
+      // Dados para o login ou cadastro
+      const data = action === "cadastro"
+        ? { name, email, password, days: [] } // Cadastro
+        : { email, password }; // Login
+
+      const response = await axios.post(baseUrl, data);
+
+      if (action === "cadastro") {
+        alert("Cadastro realizado com sucesso!");
+      } else {
+        alert("Login realizado com sucesso!");
+      }
     } catch (error) {
-      console.error("Erro ao cadastrar:", error);
-      alert("Erro ao cadastrar. Tente novamente.");
+      console.error(`${action} erro:`, error);
+      alert(`${action === "cadastro" ? "Cadastro" : "Login"} falhou. Tente novamente.`);
     }
   };
 
   return (
     <div className="div-button">
-      <button className="button" onClick={handleClickRegister}>
-        Cadastre-se
+      <button className="button" onClick={handleClick}>
+        {action === "cadastro" ? "Cadastre-se" : "Entrar"}
       </button>
     </div>
   );
