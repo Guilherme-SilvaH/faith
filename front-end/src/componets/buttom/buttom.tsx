@@ -1,4 +1,4 @@
-import React from "react";
+
 import axios from "axios";
 import "./buttos.sass";
 
@@ -24,18 +24,22 @@ export default function Buttom({ name, email, password, action }: ButtomProps) {
         : { email, password }; // Login
 
       const response = await axios.post(baseUrl, data);
-
+      
+      
       if (action === "cadastro") {
         alert("Cadastro realizado com sucesso!");
       } else {
         alert("Login realizado com sucesso!");
       }
+
+      console.log(response)
     } catch (error) {
       console.error(`${action} erro:`, error);
       alert(`${action === "cadastro" ? "Cadastro" : "Login"} falhou. Tente novamente.`);
     }
+    
   };
-
+  
   return (
     <div className="div-button">
       <button className="button" onClick={handleClick}>
