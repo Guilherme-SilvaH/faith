@@ -11,5 +11,5 @@
   "include": [
     "src/app.ts",  // Inclua diretamente seu arquivo ou use um padrão para todos os arquivos
     "./**/*.ts"   // Isso inclui todos os arquivos .ts no projeto
-  ]
+, "Controller"  ]
 }

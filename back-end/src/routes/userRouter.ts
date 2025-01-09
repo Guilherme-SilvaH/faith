@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import loginUserController from '../Controller.ts/loginUserController';
-import createUserController from '../Controller.ts/createUserController';
+import loginUserController from '../Controller/loginUserController';
+import createUserController from '../Controller/createUserController';
 
 const userRouter = Router();
 

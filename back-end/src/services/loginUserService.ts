@@ -1,5 +1,9 @@
 import User from "../modules/user";
-import bcrypt from "bcryptjs";  // Para comparar a senha criptografada
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv-safe";
+
+dotenv.config();
 
 const loginUserService = {
   async execute(userData: { email: string; password: string }) {
@@ -7,26 +11,31 @@ const loginUserService = {
     const existingUser = await User.findOne({ email: userData.email });
 
     if (!existingUser) {
-      throw new Error('Usuário não existe.');
+      throw new Error("Usuário não existe.");
     }
 
     // Verifica se a senha fornecida corresponde à senha armazenada (criptografada)
     const passwordMatch = await bcrypt.compare(userData.password, existingUser.password);
 
     if (!passwordMatch) {
-      throw new Error('Senha incorreta.');
+      throw new Error("Senha incorreta.");
     }
 
-    // Se tudo estiver certo, retorna o usuário (ou você pode gerar um token de autenticação, por exemplo)
-    return {
-      id: existingUser._id,
-      name: existingUser.name,
-      email: existingUser.email,
-      days: existingUser.days,
-      
-    };
+    // Gera o token JWT
+    const token = jwt.sign({ id: existingUser._id }, process.env.Secret as string, {
+      expiresIn: "2h",
+    });
 
-  
+    // Retorna os dados necessários para o login
+    return {
+      token,
+      user: {
+        id: existingUser._id,
+        name: existingUser.name,
+        email: existingUser.email,
+        days: existingUser.days,
+      },
+    };
   },
 };
 

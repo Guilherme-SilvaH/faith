@@ -27,6 +27,12 @@ const ReadingSchema: Schema = new Schema({
 
 const UserSchema: Schema = new Schema(
   {
+    id:{
+      type: mongoose.Schema.Types.ObjectId,
+      require: false,
+      unique: true,
+      default: () => new mongoose.Types.ObjectId()
+    },
     name: {
       type: String,
       required: true,
