@@ -32,7 +32,7 @@ export default function Cadastro() {
               />
             </div>
             <div className="dados-formulario">
-              <label htmlFor="Email" className="form_label" id="label">Email</label>
+              <label htmlFor="Email" className="form_label" id="label-email">Email</label>
               <input
                 type="email"
                 name="Email"
@@ -45,7 +45,7 @@ export default function Cadastro() {
               />
             </div>
             <div className="dados-formulario">
-              <label htmlFor="Password" className="form_label" id="label">Password</label>
+              <label htmlFor="Password" className="form_label" id="label-password">Password</label>
               <input
                 type="password"
                 name="Password"

@@ -32,7 +32,7 @@ export default function Login() {
               />
             </div>
             <div className="dados-formulario">
-              <label htmlFor="Password" className="form_label" id="label">
+              <label htmlFor="Password" className="form_label" id="label-passoword">
                 Password
               </label>
               <input
