@@ -7,11 +7,9 @@ dotenv.config();
 export const connectDB = async () => {
     try {
         const uri = process.env.MONGO_URI;
-
         if (!uri) {
             throw new Error('A variável MONGO_URI não está definida no arquivo .env');
         }
-
         await mongoose.connect(uri); // 
 
         console.log("MongoDB conectado com sucesso");

@@ -12,11 +12,6 @@ export default async function addBookController(req: IAuthRequest, res: Response
     const userId = req.user.id;
     const { day, books } = req.body;
 
-    if (!day || !books || !Array.isArray(books)) {
-      res.status(400).json({ message: "Dados inválidos. Certifique-se de incluir 'day' e 'books' corretamente." });
-      return;
-    }
-
     const result = await addBookService.execute(userId, { day, books });
 
     res.status(201).json(result);
