@@ -1,42 +1,63 @@
 import User from "../modules/user";
+import { IAuthRequest } from "../middleware/auth";
+import { Response } from "express";
 
 const addBookService = {
-  async execute(userId: string, readingData: { day: string; books: string[] }) {
-    const { day, books } = readingData;
+  async execute(req: IAuthRequest, res: Response): Promise<void> {
+    const { day, book } = req.body;
 
-    if (!day || !books || !Array.isArray(books) || books.some((b) => !b.trim())) {
-      throw new Error("Dados de leitura inválidos: 'day' e 'books' são obrigatórios.");
+    console.log("Corpo da requisição:", req.body);
+
+    if (!req.user) {
+      res.status(401).json({ message: "Usuário não autenticado." });
+      return;
     }
 
+    if (!day || !book) {
+      res.status(404).json({ message: "Dia ou Livro não inseridos." });
+      return;
+    }
+
+
     try {
-      const user = await User.findById(userId);
+      // Localiza o usuário pelo ID do token decodificado
+      const user = await User.findById(req.user.id);
+
       if (!user) {
-        throw new Error(`Usuário com ID ${userId} não encontrado.`);
+        res.status(404).json({ message: "Usuário não encontrado." });
+        return;
       }
 
-      const existingDay = user.days.find((reading) => reading.day === day);
+      
+      const normalizedDay = new Date(day).toISOString().split("T")[0];
+
+      // Verifica se o dia já existe
+      const existingDay = user.days.find(
+        (d) => new Date(d.day).toISOString().split("T")[0] === normalizedDay
+      );
 
       if (existingDay) {
-        existingDay.books.push(...books);
-        existingDay.books = [...new Set(existingDay.books)]; // Remove duplicados
+        // Verifica se o livro já existe no dia
+        const bookExists = existingDay.books.includes(book);
+        if (bookExists) {
+          res.status(400).json({ message: "Livro já adicionado neste dia." });
+          return;
+        }
+
+        // Adiciona o livro ao dia existente
+        existingDay.books.push(book);
       } else {
-        user.days.push({ day, books });
+        // Cria um novo dia com o livro
+        user.days.push({ day: normalizedDay, books: [book] });
       }
 
+      // Salva as alterações no banco
       await user.save();
 
-      const action = existingDay ? "atualizados" : "adicionados";
-      return {
-        message: `Dia e livros ${action} com sucesso!`,
-        user,
-      };
+      res.status(200).json({ message: "Livro adicionado com sucesso!", user });
     } catch (error) {
-      console.error(`Erro ao adicionar livros para o usuário ${userId}:`, error);
-      throw new Error(
-        error instanceof Error
-          ? `Erro ao adicionar livros: ${error.message}`
-          : "Erro desconhecido ao adicionar livros."
-      );
+      console.error("Erro ao adicionar livro:", error);
+      res.status(500).json({ message: "Erro ao adicionar livro." });
     }
   },
 };

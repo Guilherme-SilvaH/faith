@@ -31,8 +31,6 @@ const loginUserService = {
       // Gera o token JWT com mais informações (como email ou nome, se necessário)
       const payload = {
         id: existingUser._id,
-        name: existingUser.name,
-        email: existingUser.email,
       };
 
       const token = jwt.sign(payload, process.env.Secret as string, {

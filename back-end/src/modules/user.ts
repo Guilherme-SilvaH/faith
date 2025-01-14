@@ -15,7 +15,7 @@ export interface IUser extends Document {
 
 const ReadingSchema: Schema = new Schema({
   day: {
-    type: String,
+    type: Date,
     required: true,
   },
   books: {
@@ -59,7 +59,6 @@ const UserSchema: Schema = new Schema(
     },
     days: {
       type: [ReadingSchema],
-      default: [],
     },
   },
   {
