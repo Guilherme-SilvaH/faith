@@ -2,13 +2,16 @@ import User from "../modules/user";
 
 const addBookService = {
   async execute(userId: string, readingData: { day: string; books: string[] }) {
+    const { day, books } = readingData;
+
+    if (!day || !books || !Array.isArray(books) || books.some((b) => !b.trim())) {
+      throw new Error("Dados de leitura inválidos: 'day' e 'books' são obrigatórios.");
+    }
+
     try {
-      const { day, books } = readingData;
-
       const user = await User.findById(userId);
-
       if (!user) {
-        throw new Error("Usuário não encontrado");
+        throw new Error(`Usuário com ID ${userId} não encontrado.`);
       }
 
       const existingDay = user.days.find((reading) => reading.day === day);
@@ -22,17 +25,18 @@ const addBookService = {
 
       await user.save();
 
+      const action = existingDay ? "atualizados" : "adicionados";
       return {
-        message: "Dia e livros adicionados/atualizados com sucesso!",
+        message: `Dia e livros ${action} com sucesso!`,
         user,
       };
     } catch (error) {
-      // Verifica se `error` é uma instância de Error
-      if (error instanceof Error) {
-        throw new Error(`Erro ao adicionar livros: ${error.message}`);
-      } else {
-        throw new Error("Erro desconhecido ao adicionar livros.");
-      }
+      console.error(`Erro ao adicionar livros para o usuário ${userId}:`, error);
+      throw new Error(
+        error instanceof Error
+          ? `Erro ao adicionar livros: ${error.message}`
+          : "Erro desconhecido ao adicionar livros."
+      );
     }
   },
 };

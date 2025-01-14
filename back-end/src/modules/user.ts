@@ -22,10 +22,16 @@ const ReadingSchema: Schema = new Schema({
     type: [String],
     required: true,
     default: [],
+    validate: {
+      validator: (books: string[]) => books.length === new Set(books).size,
+      message: 'Os livros não podem conter duplicados.',
+    },
   },
 });
 
 const UserSchema: Schema = new Schema(
+
+  
   {
     id:{
       type: mongoose.Schema.Types.ObjectId,
@@ -44,12 +50,12 @@ const UserSchema: Schema = new Schema(
       unique: true,
       trim: true,
       lowercase: true,
-      match: [/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/, 'Por favor, insira um email válido'],
+      match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Por favor, insira um email válido'],
     },
     password: {
       type: String,
       required: true,
-      trim: true,
+      minlength: 8,
     },
     days: {
       type: [ReadingSchema],
@@ -61,17 +67,15 @@ const UserSchema: Schema = new Schema(
   }
 );
 
-
 UserSchema.pre<IUser>('save', async function (next) {
-  if (!this.isModified('password')) return next(); 
+  if (!this.isModified('password')) return next();
 
   try {
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(this.password, salt);
-    this.password = hashedPassword;
-    next(); 
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
   } catch (error) {
-    next(error as mongoose.CallbackError); 
+    next(error as mongoose.CallbackError);
   }
 });
 
