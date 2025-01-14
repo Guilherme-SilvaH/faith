@@ -2,14 +2,15 @@
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
-    "rootDir": "./",  // Corrija para o diretório onde os arquivos estão localizados
-    "outDir": "./dist",  // Saída dos arquivos compilados
+    "rootDir": "./",
+    "outDir": "./dist",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true
   },
   "include": [
-    "src/app.ts",  // Inclua diretamente seu arquivo ou use um padrão para todos os arquivos
-    "./**/*.ts"   // Isso inclui todos os arquivos .ts no projeto
-, "Controller"  ]
+    "src/**/*.ts",  // Inclui todos os arquivos TypeScript no diretório `src`
+    "src/@types/**/*.d.ts"  // Explicitamente inclui os arquivos de definições de tipo
+    , "Controller"]
 }
+

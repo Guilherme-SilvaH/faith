@@ -1,33 +1,40 @@
 import User from "../modules/user";
-import bcrypt from "bcryptjs";  
 
-const loginUserService = {
-  async execute(userData: { email: string; password: string }) {
-    // Verifica se o e-mail já está cadastrado
-    const existingUser = await User.findOne({ email: userData.email });
+const addBookService = {
+  async execute(userId: string, readingData: { day: string; books: string[] }) {
+    try {
+      const { day, books } = readingData;
 
-    if (!existingUser) {
-      throw new Error('Usuário não existe.');
+      const user = await User.findById(userId);
+
+      if (!user) {
+        throw new Error("Usuário não encontrado");
+      }
+
+      const existingDay = user.days.find((reading) => reading.day === day);
+
+      if (existingDay) {
+        existingDay.books.push(...books);
+        existingDay.books = [...new Set(existingDay.books)]; // Remove duplicados
+      } else {
+        user.days.push({ day, books });
+      }
+
+      await user.save();
+
+      return {
+        message: "Dia e livros adicionados/atualizados com sucesso!",
+        user,
+      };
+    } catch (error) {
+      // Verifica se `error` é uma instância de Error
+      if (error instanceof Error) {
+        throw new Error(`Erro ao adicionar livros: ${error.message}`);
+      } else {
+        throw new Error("Erro desconhecido ao adicionar livros.");
+      }
     }
-
-    // Verifica se a senha fornecida corresponde à senha armazenada (criptografada)
-    const passwordMatch = await bcrypt.compare(userData.password, existingUser.password);
-
-    if (!passwordMatch) {
-      throw new Error('Senha incorreta.');
-    }
-
-    // Se tudo estiver certo, retorna o usuário (ou você pode gerar um token de autenticação, por exemplo)
-    return {
-      id: existingUser._id,
-      name: existingUser.name,
-      email: existingUser.email,
-      days: existingUser.days,
-      
-    };
-
-  
   },
 };
 
-export default loginUserService;
+export default addBookService;

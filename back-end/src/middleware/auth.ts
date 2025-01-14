@@ -1,24 +1,26 @@
-import jwt from "jsonwebtoken";
-import { Request, Response, NextFunction } from "express";
-import dotenv from "dotenv-safe";
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+import  {IUser}  from '../modules/user';  // Assuming you have a User.ts file with the IUser interface
 
-dotenv.config();
+export interface IAuthRequest extends Request {
+  user?: IUser;  
+}
 
-const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.headers["authorization"];
+export function Authenticate(req: IAuthRequest, res: Response, next: NextFunction): void {
+  const token = req.headers.authorization?.split(' ')[1];  // Example to get the token from the Authorization header
 
   if (!token) {
-    return res.status(401).json({ message: "Token não fornecido." });
+     res.status(401).json({ message: 'Token não fornecido' });
+     return
   }
 
   try {
-    // Verifica o token
-    const decoded = jwt.verify(token.split(" ")[1], process.env.Secret as string);
-    req.user = decoded; // Adiciona os dados do token no objeto `req` (por exemplo, o ID do usuário)
-    next(); // Continua para a próxima função
+    const decoded = jwt.verify(token!, process.env.SECRET || '') as unknown as IUser;
+    req.user = decoded;  
+    next();
+    return
   } catch (error) {
-    res.status(401).json({ message: "Token inválido ou expirado." });
+     res.status(401).json({ message: 'Token inválido ou expirado' });
+     return
   }
-};
-
-export default authMiddleware;
+}
