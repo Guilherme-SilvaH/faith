@@ -12,7 +12,7 @@ export default function Login() {
         <div className="divpai-formulario-login">
           <div className="dados-login">
             <h1 className="form_title-login" id="id-cadastro">
-              Entrar no Faith!
+              Entrar na Faith!
             </h1>
           </div>
           <div className="main-form">
