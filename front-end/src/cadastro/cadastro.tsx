@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import "./cadastro.sass";
-import Buttom from "../componets/buttom/buttom";
+import Buttom from "../componets/buttom-formulario/buttom";
 
 export default function Cadastro() {
   const [name, setName] = useState("");

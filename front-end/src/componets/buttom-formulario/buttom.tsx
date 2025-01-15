@@ -7,7 +7,7 @@ interface ButtomProps {
   name?: string;  // name é opcional para o login
   email: string;
   password: string;
-  action: "cadastro" | "login"; // nova prop para decidir qual ação
+  action: "cadastro" | "login"; 
 }
 
 const baseUrlCadastro = "http://localhost:5000/api/user/cadastro";
@@ -20,7 +20,7 @@ export default function Buttom({ name, email, password, action }: ButtomProps) {
 
       // Dados para o login ou cadastro
       const data = action === "cadastro"
-        ? { name, email, password, days: [] } // Cadastro
+        ? { name, email, password } // Cadastro
         : { email, password }; // Login
 
       const response = await axios.post(baseUrl, data);

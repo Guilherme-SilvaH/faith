@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./login.sass"
-import Buttom from "../componets/buttom/buttom";
+import Buttom from "../componets/buttom-formulario/buttom";
 
 export default function Login() {
   const [email, setEmail] = useState("");

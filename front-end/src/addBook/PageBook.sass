@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Charm:wght@400;700&family=Kalnia+Glaze:wght@100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Parisienne&display=swap')
+
+.container-pageBook
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: rgb(250, 241, 241)
+    height: 100vh
+    flex-direction: column
+    background: linear-gradient(135deg, #7843e6, mix(white, #7843e6, 20%))
+    
+    
+
+    .container-dados
+        display: flex 
+        background-color: rgb(255, 255, 255)
+        width: 80%
+        border-radius: 30px
+        height: 50rem
+        
+
+        .page-left,
+        .page-right
+            flex: 1
+            padding: 50px
+
+        .page-left 
+            border-right: 1px solid #ccc
+            background-color: #f9f9f9
+            
+
+            .left-title
+                text-align: center
+                color: #AF01FE
+                font-family: "Kalnia Glaze", serif
+                font-optical-sizing: auto
+                font-weight: 700
+                font-style: normal
+                font-variation-settings: 112.5
+                font-size: 19px
+                   
+
+                h4
+                    margin-top: 2.2vw
+                    color: #000000
+                    font-family: "Charm", serif
+                    font-weight: 700
+                    font-style: normal
+                    font-size: 20px
+                    
+
+            .form-left
+                display: flex
+                flex-direction: column
+                align-items: center
+                justify-content: center
+                width: 100%
+                gap: 10px
+                margin-top: 3vh 
+                font-family: "Open Sans", serif
+               
+
+                
+                .form_label-left
+                    display: flex
+                    justify-content: center
+                    
+                    text-align: center
+                    color: #650094
+                    font-family: "Kalnia Glaze", serif
+                    font-optical-sizing: auto
+                    font-weight: 700
+                    font-style: normal
+                    font-variation-settings: 112.5
+                    font-size: 30px
+                    
+                  
+                    
+                #label-left-livros
+                    margin-top: 30px
+                    
+
+                .form_input-left
+                    padding: 5px
+                    display: flex
+                    align-items: center
+                    border: 2px solid #000000
+                    border-radius: 10px
+                    outline: none
+                    transition: border-color 0.3s, box-shadow 0.3s
+                    background-color: #f9f9f9
+                    color: #333
+                    
+
+                    &::placeholder 
+                        color: #aaa
+                        font-style: italic
+
+
+
+                    &:focus 
+                      border-color: #7843e6
+                      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5)
+                      background-color: #fff
+
+
+
+                    &:hover 
+                      border-color: #7843e6
+
+
+                #livros
+                    padding: 10px
+                    font-size: 15px
+
+                
+    
+        .page-right 
+            background-color: #fff
+    
