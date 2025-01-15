@@ -9,6 +9,7 @@
     "strict": true
   },
   "include": [
+    "app.ts",
     "src/**/*.ts",  // Inclui todos os arquivos TypeScript no diretório `src`
     "src/@types/**/*.d.ts"  // Explicitamente inclui os arquivos de definições de tipo
     , "Controller"]
