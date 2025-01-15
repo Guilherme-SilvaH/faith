@@ -7,7 +7,7 @@ interface ButtomBookProps {
   livrosLidos: string[];
 }
 
-const baseUrlAddBook = "http://localhost:5000/api/user/add-book";
+const baseUrlAddBook = "https://apibible.vercel.app/api/user/add-book";
 
 export default function ButtomBook({ dia, livrosLidos }: ButtomBookProps) {
   const handleClickBook = async () => {
@@ -20,7 +20,7 @@ export default function ButtomBook({ dia, livrosLidos }: ButtomBookProps) {
         day: formattedDate,
         books: livrosLidos,
       });
-
+      alert("livro Adicionado")
       console.log("Resposta da API:", response.data);
     } catch (error) {
       console.error("Erro ao enviar dados:", error);

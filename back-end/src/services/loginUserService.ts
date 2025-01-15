@@ -32,6 +32,10 @@ const loginUserService = {
       const payload = {
         id: existingUser._id,
       };
+      
+      if (!process.env.SECRET) {
+        throw new Error("A variável SECRET não está definida!");
+      }
 
       const token = jwt.sign(payload, process.env.Secret as string, {
         expiresIn: "2h",
