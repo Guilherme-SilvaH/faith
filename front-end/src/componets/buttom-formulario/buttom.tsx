@@ -29,7 +29,7 @@ export default function Buttom({ name, email, password, action }: ButtomProps) {
       if (action === "cadastro") {
         alert("Cadastro realizado com sucesso!");
         // Redireciona para a página de login após cadastro
-        navigate("/login"); // Rota de login
+        navigate("/"); // Rota de login
       } else {
         alert("Login realizado com sucesso!");
         
