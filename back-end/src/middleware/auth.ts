@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import  {IUser}  from '../modules/user';  // Assuming you have a User.ts file with the IUser interface
+import  {IUser}  from '../modules/user';  
 
 export interface IAuthRequest extends Request {
   user?: IUser;  
 }
 
 export function Authenticate(req: IAuthRequest, res: Response, next: NextFunction): void {
-  const token = req.headers.authorization?.split(' ')[1];  // Example to get the token from the Authorization header
+  const token = req.headers.authorization?.split(' ')[1];  
 
   if (!token) {
      res.status(401).json({ message: 'Token não fornecido' });

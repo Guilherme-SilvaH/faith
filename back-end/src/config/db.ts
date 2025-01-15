@@ -1,16 +1,19 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-// Carregar variáveis de ambiente
+// Carrega as variáveis de ambiente do arquivo .env
 dotenv.config();
-
+console.log(process.env.MONGO_URI)
 export const connectDB = async () => {
     try {
         const uri = process.env.MONGO_URI;
+        
         if (!uri) {
             throw new Error('A variável MONGO_URI não está definida no arquivo .env');
         }
-        await mongoose.connect(uri); // 
+
+        // Conecta ao MongoDB sem as opções obsoletas
+        await mongoose.connect(uri);
 
         console.log("MongoDB conectado com sucesso");
     } catch (error) {
