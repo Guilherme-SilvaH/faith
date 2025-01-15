@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-// Definindo o tipo para os dados do usuário no login
 interface IUserData {
   email: string;
   password: string;
@@ -27,8 +26,6 @@ const loginUserService = {
       if (!passwordMatch) {
         throw new Error("Senha incorreta.");
       }
-
-      // Gera o token JWT com mais informações (como email ou nome, se necessário)
       const payload = {
         id: existingUser._id,
       };
@@ -37,7 +34,7 @@ const loginUserService = {
         throw new Error("A variável SECRET não está definida!");
       }
 
-      const token = jwt.sign(payload, process.env.Secret as string, {
+      const token = jwt.sign(payload, process.env.SECRET as string, {
         expiresIn: "2h",
       });
 
