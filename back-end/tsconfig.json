@@ -8,5 +8,8 @@
     "skipLibCheck": true,
     "strict": true
   },
+  "include": [
+    "src/**/*.ts",  // Inclui todos os arquivos TypeScript no diretório `src`
+   ]
 }
 
