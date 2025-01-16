@@ -15,12 +15,14 @@ export default function ButtomBook({ dia, livrosLidos }: ButtomBookProps) {
     const formattedDate = dia.toISOString().split("T")[0];
     const token = localStorage.getItem("authToken"); // Recuperar o token do localStorage
 
+    // Verificar se o token está presente
     if (!token) {
       alert("Você precisa estar logado para adicionar um livro.");
       return;
     }
 
     try {
+      // Enviar a requisição para a API
       const response = await axios.post(
         baseUrlAddBook,
         {
@@ -33,17 +35,28 @@ export default function ButtomBook({ dia, livrosLidos }: ButtomBookProps) {
           },
         }
       );
+
+      // Notificar sucesso ao usuário
       alert("Livro adicionado com sucesso!");
       console.log("Resposta da API:", response.data);
     } catch (error) {
-      if (axios.isAxiosError(error) && error.response) {
-        if (error.response.status === 401) {
-          alert("Sessão expirada ou token inválido. Faça login novamente.");
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          // Erros da API
+          if (error.response.status === 401) {
+            alert("Sessão expirada ou token inválido. Faça login novamente.");
+          } else {
+            alert(
+              `Erro: ${error.response.data.message || "Tente novamente mais tarde."}`
+            );
+          }
         } else {
-          alert(`Erro: ${error.response.data.message || "Tente novamente."}`);
+          // Erros de rede ou problemas no servidor
+          alert("Não foi possível conectar à API. Verifique sua conexão.");
         }
       } else {
-        alert("Erro desconhecido. Tente novamente.");
+        // Outros erros desconhecidos
+        alert("Erro inesperado. Por favor, tente novamente.");
       }
       console.error("Erro ao enviar dados:", error);
     }
