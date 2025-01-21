@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./PageBook.sass";
 import ButtomBook from "./buttom/buttomBook";
+import GenereterVerses from "../generaterVerses/generaterVerses";
+
 
 export default function PageBook() {
   const [dia, setDia] = useState(""); // Data selecionada
@@ -59,6 +61,7 @@ export default function PageBook() {
         <div className="page-right">
           <h2>Página Direita</h2>
           <p>Conteúdo da página direita.</p>
+          <GenereterVerses/>
         </div>
       </div>
     </div>
