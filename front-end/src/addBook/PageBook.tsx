@@ -53,9 +53,6 @@ export default function PageBook() {
               onChange={(e) => setNovoLivro(e.target.value)} // Atualiza o estado do novo livro
               required
             />
-            <button onClick={handleAddLivro} className="add-book-button">
-              Adicionar Livro
-            </button>
 
             <div className="book-list">
               <h4>Livros Adicionados:</h4>
@@ -67,7 +64,12 @@ export default function PageBook() {
             </div>
           </div>
           <div className="container-buttom">
-            <ButtomBook dia={new Date(dia)} livrosLidos={livros} />
+            {/* O botão agora adiciona um novo livro */}
+            <ButtomBook
+              onClick={handleAddLivro} // A lógica de adicionar é passada para o componente
+              dia={new Date(dia)}
+              livrosLidos={livros}
+            />
           </div>
         </div>
 
