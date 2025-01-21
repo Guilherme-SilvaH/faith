@@ -11,7 +11,7 @@ const baseUrlAddBook = "https://apibible.vercel.app/api/user/add-book";
 
 export default function ButtomBook({ dia, livrosLidos, onClick }: ButtomBookProps) {
   const handleClickBook = async () => {
-    if (onClick) onClick();
+    if (onClick) onClick(); // Executa o handler de adicionar o livro na lista
 
     const formattedDate = dia.toISOString().split("T")[0];
     const token = localStorage.getItem("authToken");
@@ -42,7 +42,7 @@ export default function ButtomBook({ dia, livrosLidos, onClick }: ButtomBookProp
           },
         }
       );
-      alert("Livro adicionado com sucesso!");
+      alert("Livros adicionados com sucesso!");
       console.log("Resposta da API:", response.data);
     } catch (error) {
       if (axios.isAxiosError(error)) {
