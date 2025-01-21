@@ -20,8 +20,8 @@ export default function GenereterVerses() {
       const response = await axios.get(generaterApi);
       console.log("Resposta da API:", response.data);
       
-      // Extraindo os dados necessários
-      const { book, chapter, verse, text } = response.data;
+      // Extraindo os dados necessários do objeto 'random_verse'
+      const { book, chapter, verse, text } = response.data.random_verse;
 
       // Armazenando os dados do versículo no estado
       setVerseData({ book, chapter, verse, text });
