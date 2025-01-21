@@ -7,9 +7,8 @@ export default function PageBook() {
   const [livros, setLivros] = useState<string[]>([]);
 
   const handleAddLivro = () => {
-    if (livros.length === 0 || !livros[livros.length - 1]) return;
-    // Adicionando o novo livro ao array de livros
-    setLivros((prevLivros) => [...prevLivros, livros[livros.length - 1]]);
+    // Adiciona um novo campo vazio para o próximo livro
+    setLivros((prevLivros) => [...prevLivros, ""]);
   };
 
   return (
@@ -19,10 +18,10 @@ export default function PageBook() {
           <div className="left-title">
             <h1>ADCIONE A SUA LEITURA AQUI</h1>
             <h4>
-            "A cada dia em que você se dedica a ler a Bíblia, está construindo um elo mais forte com Deus. Cada versículo, cada história, cada ensinamento, 
-            são passos que te aproximam mais do Seu amor e da Sua sabedoria. A palavra de Deus é luz para os nossos caminhos e força para o nosso coração. 
-            Não importa o ritmo, o importante é a constância e a fé. Dedique um tempo diário para refletir e permitir que Ele fale com você, 
-            transformando sua vida de dentro para fora."
+              "A cada dia em que você se dedica a ler a Bíblia, está construindo um elo mais forte com Deus. Cada versículo, cada história, cada ensinamento, 
+              são passos que te aproximam mais do Seu amor e da Sua sabedoria. A palavra de Deus é luz para os nossos caminhos e força para o nosso coração. 
+              Não importa o ritmo, o importante é a constância e a fé. Dedique um tempo diário para refletir e permitir que Ele fale com você, 
+              transformando sua vida de dentro para fora."
             </h4>
           </div>
           <div className="form-left">
@@ -35,7 +34,7 @@ export default function PageBook() {
               className="form_input-left"
               id="dia"
               value={dia}
-              onChange={(e) => setDia(e.target.value)} // O valor de 'dia' é uma string
+              onChange={(e) => setDia(e.target.value)}
               required
             />
 
@@ -51,10 +50,13 @@ export default function PageBook() {
               value={livros[livros.length - 1] || ""}
               onChange={(e) => {
                 const newLivro = e.target.value;
-                // Atualizando o último valor no array de livros
                 setLivros((prevLivros) => {
                   const newLivros = [...prevLivros];
-                  newLivros[newLivros.length - 1] = newLivro;
+                  if (newLivros.length === 0 || newLivros[newLivros.length - 1]) {
+                    newLivros.push(newLivro);
+                  } else {
+                    newLivros[newLivros.length - 1] = newLivro;
+                  }
                   return newLivros;
                 });
               }}
@@ -62,8 +64,7 @@ export default function PageBook() {
             />
           </div>
           <div className="container-buttom">
-            {/* Passando os dados convertidos */}
-            <ButtomBook onClick={handleAddLivro} dia={new Date(dia)} livrosLidos={livros} /> 
+            <ButtomBook onClick={handleAddLivro} dia={new Date(dia)} livrosLidos={livros} />
           </div>
         </div>
 
