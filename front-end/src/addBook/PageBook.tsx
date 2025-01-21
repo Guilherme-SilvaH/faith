@@ -4,7 +4,7 @@ import ButtomBook from "./buttom/buttomBook";
 
 export default function PageBook() {
   const [dia, setDia] = useState("");
-  const [livros, setLivros] = useState<string[]>([]);
+  const [livros, setLivros] = useState<string[]>([""]); // Inicia com um valor vazio para o primeiro livro
 
   const handleAddLivro = () => {
     if (livros.length === 0 || !livros[livros.length - 1]) return;
@@ -20,10 +20,7 @@ export default function PageBook() {
           <div className="left-title">
             <h1>ADCIONE A SUA LEITURA AQUI</h1>
             <h4>
-              "A cada dia em que você se dedica a ler a Bíblia, está construindo um elo mais forte com Deus. Cada versículo, cada história, cada ensinamento, 
-              são passos que te aproximam mais do Seu amor e da Sua sabedoria. A palavra de Deus é luz para os nossos caminhos e força para o nosso coração. 
-              Não importa o ritmo, o importante é a constância e a fé. Dedique um tempo diário para refletir e permitir que Ele fale com você, 
-              transformando sua vida de dentro para fora."
+              "A cada dia em que você se dedica a ler a Bíblia, está construindo um elo mais forte com Deus..."
             </h4>
           </div>
           <div className="form-left">
@@ -49,14 +46,13 @@ export default function PageBook() {
               className="form_input-left"
               id="livros"
               placeholder="Digite o nome do livro"
-              value={livros[livros.length - 1] || ""}
+              value={livros[livros.length - 1] || ""} // Sempre exibe o último livro na lista
               onChange={(e) => {
                 const newLivro = e.target.value;
-                // Atualizando o último valor no array de livros
                 setLivros((prevLivros) => {
-                  const newLivros = [...prevLivros];
-                  newLivros[newLivros.length - 1] = newLivro;
-                  return newLivros;
+                  const updatedLivros = [...prevLivros];
+                  updatedLivros[updatedLivros.length - 1] = newLivro; // Atualiza o último livro no array
+                  return updatedLivros;
                 });
               }}
               required
@@ -75,3 +71,4 @@ export default function PageBook() {
     </div>
   );
 }
+
