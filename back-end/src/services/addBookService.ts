@@ -6,15 +6,13 @@ const addBookService = {
   async execute(req: IAuthRequest, res: Response): Promise<void> {
     const { day, books } = req.body;
 
-    console.log("Corpo da requisição:", req.body);
-
     if (!req.user) {
       res.status(401).json({ message: "Usuário não autenticado." });
       return;
     }
 
     if (!day || !Array.isArray(books) || books.length === 0) {
-      res.status(404).json({ message: "Dia ou Livros não inseridos." });
+      res.status(400).json({ message: "Dia ou livros inválidos." });
       return;
     }
 
@@ -26,29 +24,31 @@ const addBookService = {
         return;
       }
 
-      const normalizedDay = new Date(day).toISOString().split("T")[0]; // Garantir que a data esteja no formato "YYYY-MM-DD"
+      const normalizedDay = new Date(day).toISOString().split("T")[0];
 
-      // Localiza ou cria o dia
       let existingDay = user.days.find(
         (d) => new Date(d.day).toISOString().split("T")[0] === normalizedDay
       );
 
+      // Se o dia não existe, crie um novo
       if (!existingDay) {
         existingDay = { day: normalizedDay, books: [] };
         user.days.push(existingDay);
       }
 
-      // Adiciona livros, verificando duplicados
+      // Adiciona os livros, garantindo que não sejam duplicados
       books.forEach((book) => {
         if (!existingDay.books.includes(book)) {
           existingDay.books.push(book);
         }
       });
 
-      // Salva as alterações no banco
-      await user.save();
+      await user.save(); // Atualiza o banco de dados
 
-      res.status(200).json({ message: "Livros adicionados com sucesso!", user });
+      res.status(200).json({
+        message: "Livros adicionados com sucesso!",
+        addedBooks: books,
+      });
     } catch (error) {
       console.error("Erro ao adicionar livros:", error);
       res.status(500).json({ message: "Erro ao adicionar livros." });
@@ -57,5 +57,3 @@ const addBookService = {
 };
 
 export default addBookService;
-
-
