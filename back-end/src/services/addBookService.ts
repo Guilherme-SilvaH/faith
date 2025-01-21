@@ -37,7 +37,7 @@ const addBookService = {
 
       const addedBooks: string[] = [];
       books.forEach((book) => {
-        if (!existingDay.books.includes(book)) {
+        if (existingDay.books.includes(book)) {
           existingDay.books.push(book);
           addedBooks.push(book);
         }

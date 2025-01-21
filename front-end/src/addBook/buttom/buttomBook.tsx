@@ -2,9 +2,9 @@ import axios from "axios";
 import "./buttonBook.sass";
 
 interface ButtomBookProps {
-  dia: Date | null; // Data do dia
-  livro: string; // Livro digitado
-  onResetLivro: () => void; // Função para resetar o campo do livro
+  dia: Date | null; 
+  livro: string[]; 
+  onResetLivro: () => void; 
 }
 
 const baseUrlAddBook = "https://apibible.vercel.app/api/user/add-book";
@@ -33,7 +33,7 @@ export default function ButtomBook({ dia, livro, onResetLivro }: ButtomBookProps
     try {
       const response = await axios.post(
         baseUrlAddBook,
-        { day: formattedDate, books: [livro] }, // Envia apenas o livro atual
+        { day: formattedDate, books: [livro] }, 
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
