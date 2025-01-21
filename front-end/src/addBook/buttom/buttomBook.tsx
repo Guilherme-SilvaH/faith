@@ -1,18 +1,17 @@
 import axios from "axios";
 import "./buttonBook.sass";
 
-// Interface para as props
 interface ButtomBookProps {
   dia: Date;
   livrosLidos: string[];
-  onClick?: () => void; 
+  onClick?: () => void;
 }
 
 const baseUrlAddBook = "https://apibible.vercel.app/api/user/add-book";
 
 export default function ButtomBook({ dia, livrosLidos, onClick }: ButtomBookProps) {
   const handleClickBook = async () => {
-    if (onClick) onClick(); // Caso uma função 'onClick' seja passada, execute-a
+    if (onClick) onClick();
 
     const formattedDate = dia.toISOString().split("T")[0];
     const token = localStorage.getItem("authToken");
@@ -22,12 +21,20 @@ export default function ButtomBook({ dia, livrosLidos, onClick }: ButtomBookProp
       return;
     }
 
+    // Filtrar livros válidos
+    const livrosFiltrados = livrosLidos.filter((livro) => livro.trim() !== "");
+
+    if (livrosFiltrados.length === 0) {
+      alert("Nenhum livro válido foi adicionado.");
+      return;
+    }
+
     try {
       const response = await axios.post(
         baseUrlAddBook,
         {
           day: formattedDate,
-          books: livrosLidos,
+          books: livrosFiltrados,
         },
         {
           headers: {
@@ -63,3 +70,4 @@ export default function ButtomBook({ dia, livrosLidos, onClick }: ButtomBookProp
     </div>
   );
 }
+
