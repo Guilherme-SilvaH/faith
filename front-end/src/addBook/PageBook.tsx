@@ -5,20 +5,12 @@ import ButtomBook from "./buttom/buttomBook";
 export default function PageBook() {
   const [dia, setDia] = useState("");
   const [livros, setLivros] = useState<string[]>([]);
-  const [livroAtual, setLivroAtual] = useState(""); // Para controlar o input do livro atual
 
   const handleAddLivro = () => {
-    // Adiciona o livro atual à lista, se válido
-    if (!livroAtual.trim()) {
-      alert("Por favor, insira o nome de um livro válido.");
-      return;
-    }
+    if (livros.length === 0 || !livros[livros.length - 1]) return;
 
-    // Atualiza a lista de livros
-    setLivros((prevLivros) => [...prevLivros, livroAtual.trim()]);
-
-    // Reseta o campo do livro atual
-    setLivroAtual("");
+    // Adicionando o livro ao array de livros
+    setLivros((prevLivros) => [...prevLivros, livros[livros.length - 1]]);
   };
 
   return (
@@ -28,52 +20,58 @@ export default function PageBook() {
           <div className="left-title">
             <h1>ADCIONE A SUA LEITURA AQUI</h1>
             <h4>
-              "A cada dia em que você se dedica a ler a Bíblia..."
+              "A cada dia em que você se dedica a ler a Bíblia, está construindo um elo mais forte com Deus. Cada versículo, cada história, cada ensinamento, 
+              são passos que te aproximam mais do Seu amor e da Sua sabedoria. A palavra de Deus é luz para os nossos caminhos e força para o nosso coração. 
+              Não importa o ritmo, o importante é a constância e a fé. Dedique um tempo diário para refletir e permitir que Ele fale com você, 
+              transformando sua vida de dentro para fora."
             </h4>
           </div>
-
           <div className="form-left">
-            <label htmlFor="dia" className="form_label-left">Dia</label>
+            <label htmlFor="dia" className="form_label-left" id="label-left">
+              Dia
+            </label>
             <input
               type="date"
               name="dia"
               className="form_input-left"
+              id="dia"
               value={dia}
-              onChange={(e) => setDia(e.target.value)}
+              onChange={(e) => setDia(e.target.value)} // Atualiza o estado 'dia'
               required
             />
 
-            <label htmlFor="livros" className="form_label-left">Livro Atual</label>
+            <label htmlFor="livros" className="form_label-left" id="label-left-livros">
+              Livros Lidos
+            </label>
             <input
               type="text"
               name="livros"
               className="form_input-left"
+              id="livros"
               placeholder="Digite o nome do livro"
-              value={livroAtual}
-              onChange={(e) => setLivroAtual(e.target.value)}
+              value={livros[livros.length - 1] || ""}
+              onChange={(e) => {
+                const newLivro = e.target.value;
+                // Atualizando o último valor no array de livros
+                setLivros((prevLivros) => {
+                  const newLivros = [...prevLivros];
+                  newLivros[newLivros.length - 1] = newLivro;
+                  return newLivros;
+                });
+              }}
               required
             />
           </div>
-
           <div className="container-buttom">
-            <ButtomBook 
-              onClick={handleAddLivro} // Adiciona livro à lista, o envio é feito no ButtonBook
-              dia={new Date(dia)}
-              livrosLidos={livros} 
-            />
+            <ButtomBook onClick={handleAddLivro} dia={new Date(dia)} livrosLidos={livros} />
           </div>
         </div>
 
         <div className="page-right">
-          <h2>Livros Adicionados:</h2>
-          <ul>
-            {livros.map((livro, index) => (
-              <li key={index}>{livro}</li>
-            ))}
-          </ul>
+          <h2>Página Direita</h2>
+          <p>Conteúdo da página direita.</p>
         </div>
       </div>
     </div>
   );
 }
-
