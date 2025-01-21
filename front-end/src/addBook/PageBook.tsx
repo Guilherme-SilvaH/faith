@@ -5,10 +5,12 @@ import ButtomBook from "./buttom/buttomBook";
 export default function PageBook() {
   const [dia, setDia] = useState("");
   const [livros, setLivros] = useState<string[]>([]);
+  const [novoLivro, setNovoLivro] = useState(""); // Estado para o novo livro a ser adicionado
 
   const handleAddLivro = () => {
-    // Adiciona um novo campo vazio para o próximo livro
-    setLivros((prevLivros) => [...prevLivros, ""]);
+    if (novoLivro.trim() === "") return; // Não adiciona valores vazios
+    setLivros((prevLivros) => [...prevLivros, novoLivro.trim()]);
+    setNovoLivro(""); // Limpa o campo de entrada
   };
 
   return (
@@ -39,7 +41,7 @@ export default function PageBook() {
             />
 
             <label htmlFor="livros" className="form_label-left" id="label-left-livros">
-              Livros Lidos
+              Adicionar Livro
             </label>
             <input
               type="text"
@@ -47,24 +49,25 @@ export default function PageBook() {
               className="form_input-left"
               id="livros"
               placeholder="Digite o nome do livro"
-              value={livros[livros.length - 1] || ""}
-              onChange={(e) => {
-                const newLivro = e.target.value;
-                setLivros((prevLivros) => {
-                  const newLivros = [...prevLivros];
-                  if (newLivros.length === 0 || newLivros[newLivros.length - 1]) {
-                    newLivros.push(newLivro);
-                  } else {
-                    newLivros[newLivros.length - 1] = newLivro;
-                  }
-                  return newLivros;
-                });
-              }}
+              value={novoLivro}
+              onChange={(e) => setNovoLivro(e.target.value)} // Atualiza o estado do novo livro
               required
             />
+            <button onClick={handleAddLivro} className="add-book-button">
+              Adicionar Livro
+            </button>
+
+            <div className="book-list">
+              <h4>Livros Adicionados:</h4>
+              <ul>
+                {livros.map((livro, index) => (
+                  <li key={index}>{livro}</li>
+                ))}
+              </ul>
+            </div>
           </div>
           <div className="container-buttom">
-            <ButtomBook onClick={handleAddLivro} dia={new Date(dia)} livrosLidos={livros} />
+            <ButtomBook dia={new Date(dia)} livrosLidos={livros} />
           </div>
         </div>
 
