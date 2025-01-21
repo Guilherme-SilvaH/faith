@@ -4,7 +4,7 @@ import { Response } from "express";
 
 const addBookService = {
   async execute(req: IAuthRequest, res: Response): Promise<void> {
-    const { day, books } = req.body; // Ajustado para receber 'books' como array
+    const { day, books } = req.body;
 
     console.log("Corpo da requisição:", req.body);
 
@@ -26,7 +26,7 @@ const addBookService = {
         return;
       }
 
-      const normalizedDay = new Date(day).toISOString().split("T")[0];
+      const normalizedDay = new Date(day).toISOString().split("T")[0]; // Garantir que a data esteja no formato "YYYY-MM-DD"
 
       // Localiza ou cria o dia
       let existingDay = user.days.find(
@@ -38,7 +38,7 @@ const addBookService = {
         user.days.push(existingDay);
       }
 
-      // Adiciona os livros, verificando duplicados
+      // Adiciona livros, verificando duplicados
       books.forEach((book) => {
         if (!existingDay.books.includes(book)) {
           existingDay.books.push(book);
@@ -57,4 +57,5 @@ const addBookService = {
 };
 
 export default addBookService;
+
 
