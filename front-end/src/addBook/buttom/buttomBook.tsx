@@ -3,7 +3,7 @@ import "./buttonBook.sass";
 
 interface ButtomBookProps {
   dia: Date | null; 
-  livro: string[]; 
+  livro: string[] | string; 
   onResetLivro: () => void; 
 }
 
@@ -23,7 +23,7 @@ export default function ButtomBook({ dia, livro, onResetLivro }: ButtomBookProps
       return;
     }
 
-    if (!livro) {
+    if (!livro || livro.length === 0) {
       alert("Digite um nome válido para o livro antes de adicionar.");
       return;
     }
@@ -33,7 +33,7 @@ export default function ButtomBook({ dia, livro, onResetLivro }: ButtomBookProps
     try {
       const response = await axios.post(
         baseUrlAddBook,
-        { day: formattedDate, books: [livro] }, 
+        { day: formattedDate, books: livro }, // Envia diretamente o array de livros
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

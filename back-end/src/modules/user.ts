@@ -22,10 +22,6 @@ const ReadingSchema: Schema = new Schema({
     type: [String],
     required: true,
     default: [],
-    validate: {
-      validator: (books: string[]) => books.length === new Set(books).size,
-      message: 'Os livros não podem conter duplicados.',
-    },
   },
 });
 

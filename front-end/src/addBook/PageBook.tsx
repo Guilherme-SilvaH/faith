@@ -13,12 +13,10 @@ export default function PageBook() {
           <div className="left-title">
             <h1>ADCIONE A SUA LEITURA AQUI</h1>
             <h4>
-            "A cada dia em que você se dedica a ler a Bíblia, está construindo um elo mais forte com Deus. Cada versículo, cada história, cada ensinamento, s
-            ão passos que te aproximam mais do Seu amor e da Sua sabedoria. A palavra de Deus é luz para os nossos caminhos e força para o nosso coração. 
-            Não importa o ritmo, o importante é a constância e a fé. Dedique um tempo diário para refletir e permitir que Ele fale com você, 
-            transformando sua vida de dentro para fora."
+              "A cada dia em que você se dedica a ler a Bíblia, está construindo um elo mais forte com Deus. Cada versículo, cada história, cada ensinamento, são passos que te aproximam mais do Seu amor e da Sua sabedoria. A palavra de Deus é luz para os nossos caminhos e força para o nosso coração. Não importa o ritmo, o importante é a constância e a fé. Dedique um tempo diário para refletir e permitir que Ele fale com você, transformando sua vida de dentro para fora."
             </h4>
           </div>
+
           <div className="form-left">
             <label htmlFor="dia" className="form_label-left">
               Dia
@@ -29,7 +27,7 @@ export default function PageBook() {
               className="form_input-left"
               id="dia"
               value={dia}
-              onChange={(e) => setDia(e.target.value)} 
+              onChange={(e) => setDia(e.target.value)}
               required
             />
 
@@ -43,17 +41,18 @@ export default function PageBook() {
               id="livro"
               placeholder="Digite o nome do livro"
               value={livro}
-              onChange={(e) => setLivro(e.target.value)} 
+              onChange={(e) => setLivro(e.target.value)}
               required
             />
           </div>
+
           <div className="container-buttom">
             {/* Passa os valores diretamente para o ButtomBook */}
             <ButtomBook
               dia={dia ? new Date(dia) : null}
               livro={livro.trim() ? [livro.trim()] : []} 
               onResetLivro={() => setLivro("")}
-              />
+            />
           </div>
         </div>
 
