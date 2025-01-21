@@ -13,7 +13,7 @@ export default function ButtomBook({ dia, livrosLidos, onClick }: ButtomBookProp
   const handleClickBook = async () => {
     if (onClick) onClick(); // Executa o handler de adicionar o livro na lista
 
-    const formattedDate = dia.toISOString().split("T")[0];
+    const formattedDate = dia.toISOString().split("T")[0]; // Formata a data como "YYYY-MM-DD"
     const token = localStorage.getItem("authToken");
 
     if (!token) {
@@ -21,7 +21,7 @@ export default function ButtomBook({ dia, livrosLidos, onClick }: ButtomBookProp
       return;
     }
 
-    // Filtrar livros válidos
+    // Filtra livros válidos
     const livrosFiltrados = livrosLidos.filter((livro) => livro.trim() !== "");
 
     if (livrosFiltrados.length === 0) {
@@ -70,4 +70,3 @@ export default function ButtomBook({ dia, livrosLidos, onClick }: ButtomBookProp
     </div>
   );
 }
-
