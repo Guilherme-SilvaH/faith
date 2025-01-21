@@ -4,22 +4,18 @@ import ButtomBook from "./buttom/buttomBook";
 
 export default function PageBook() {
   const [dia, setDia] = useState("");
-  const [livros, setLivros] = useState<string[]>([""]); // Inicia com um valor vazio para o primeiro livro
-  
+  const [livros, setLivros] = useState<string[]>([]); // Estado inicial como array vazio
 
   const handleAddLivro = () => {
-    if (livros.length === 0 || !livros[livros.length - 1]) return;
-  
-    // Adicionando o livro ao array de livros
-    setLivros((prevLivros) => [...prevLivros, livros[livros.length - 1]]);
-  
-    // Resetando os estados após adicionar o livro
-    setDia(""); // Reseta o dia
-    setLivros([""]); // Reseta o array de livros para iniciar novamente
-  };
-  
+    // Verifica se há um livro válido para adicionar
+    if (livros.length === 0 || !livros[livros.length - 1]?.trim()) {
+      alert("Adicione um livro válido antes de prosseguir.");
+      return;
+    }
 
-  
+    // Reseta o campo do input, mas mantém os livros já adicionados
+    setLivros((prevLivros) => [...prevLivros, ""]);
+  };
 
   return (
     <div className="container-pageBook">
@@ -28,10 +24,11 @@ export default function PageBook() {
           <div className="left-title">
             <h1>ADCIONE A SUA LEITURA AQUI</h1>
             <h4>
-            "A cada dia em que você se dedica a ler a Bíblia, está construindo um elo mais forte com Deus. Cada versículo, cada história, cada ensinamento, 
-            são passos que te aproximam mais do Seu amor e da Sua sabedoria. A palavra de Deus é luz para os nossos caminhos e força para o nosso coração. 
-            Não importa o ritmo, o importante é a constância e a fé. Dedique um tempo diário para refletir e permitir que Ele fale com você, 
-            transformando sua vida de dentro para fora."
+              "A cada dia em que você se dedica a ler a Bíblia, está construindo um elo mais forte com Deus. Cada versículo,
+              cada história, cada ensinamento, são passos que te aproximam mais do Seu amor e da Sua sabedoria. A palavra de
+              Deus é luz para os nossos caminhos e força para o nosso coração. Não importa o ritmo, o importante é a
+              constância e a fé. Dedique um tempo diário para refletir e permitir que Ele fale com você, transformando sua
+              vida de dentro para fora."
             </h4>
           </div>
           <div className="form-left">
@@ -57,12 +54,12 @@ export default function PageBook() {
               className="form_input-left"
               id="livros"
               placeholder="Digite o nome do livro"
-              value={livros[livros.length - 1] || ""} // Sempre exibe o último livro na lista
+              value={livros[livros.length - 1] || ""}
               onChange={(e) => {
                 const newLivro = e.target.value;
                 setLivros((prevLivros) => {
                   const updatedLivros = [...prevLivros];
-                  updatedLivros[updatedLivros.length - 1] = newLivro; // Atualiza o último livro no array
+                  updatedLivros[updatedLivros.length - 1] = newLivro; 
                   return updatedLivros;
                 });
               }}
@@ -70,12 +67,9 @@ export default function PageBook() {
             />
           </div>
           <div className="container-buttom">
-            <ButtomBook onClick={handleAddLivro} dia={new Date(dia)} livrosLidos={livros}  />
+            <ButtomBook onClick={handleAddLivro} dia={new Date(dia)} livrosLidos={livros.filter((livro) => livro.trim() !== "")} />
           </div>
         </div>
-            
-        
-        
 
         <div className="page-right">
           <h2>Página Direita</h2>
@@ -85,4 +79,3 @@ export default function PageBook() {
     </div>
   );
 }
-
