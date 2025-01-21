@@ -51,7 +51,6 @@ export default function PageBook() {
               value={livros[livros.length - 1] || ""}
               onChange={(e) => {
                 const newLivro = e.target.value;
-                // Atualizando o último valor no array de livros
                 setLivros((prevLivros) => {
                   const newLivros = [...prevLivros];
                   newLivros[newLivros.length - 1] = newLivro;
