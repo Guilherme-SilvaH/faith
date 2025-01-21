@@ -5,32 +5,44 @@ import ButtomBook from "./buttom/buttomBook";
 export default function PageBook() {
   const [dia, setDia] = useState("");
   const [livros, setLivros] = useState<string[]>([]);
-  const [novoLivro, setNovoLivro] = useState(""); // Estado para o novo livro a ser adicionado
+  const [livroAtual, setLivroAtual] = useState(""); // Para controlar o input do livro atual
 
-  const handleAddLivro = () => {
-    if (novoLivro.trim() === "") return; // Não adiciona valores vazios
+  const handleAddAndSend = () => {
+    // Adiciona o livro atual à lista, se válido
+    if (!livroAtual.trim()) {
+      alert("Por favor, insira o nome de um livro válido.");
+      return;
+    }
 
-    // Adiciona o livro à lista local
-    const livroAdicionado = novoLivro.trim();
-    setLivros((prevLivros) => [...prevLivros, livroAdicionado]);
+    // Atualiza a lista de livros
+    setLivros((prevLivros) => [...prevLivros, livroAtual.trim()]);
 
-    // Envia os dados ao banco de dados
-    enviarDadosAoBanco(new Date(dia), [...livros, livroAdicionado]);
+    // Reseta o campo do livro atual
+    setLivroAtual("");
 
-    setNovoLivro(""); // Limpa o campo de entrada
+    // Aqui chamamos o botão para lidar com o envio à API
+    handleSendToAPI([...livros, livroAtual.trim()]);
   };
 
-  const enviarDadosAoBanco = async (diaSelecionado: Date, livrosAtualizados: string[]) => {
+  const handleSendToAPI = async (livrosParaEnviar: string[]) => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      alert("Você precisa estar logado para adicionar um livro.");
+      return;
+    }
+
     try {
-      // Aqui você deve ajustar para chamar sua API ou serviço que envia os dados ao banco de dados
-      await fetch("/api/salvarLeitura", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ dia: diaSelecionado, livros: livrosAtualizados }),
-      });
-      console.log("Dados enviados ao banco com sucesso!");
+      const formattedDate = new Date(dia).toISOString().split("T")[0];
+      const response = await axios.post(
+        "https://apibible.vercel.app/api/user/add-book",
+        { day: formattedDate, books: livrosParaEnviar },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      alert("Livros enviados com sucesso!");
+      console.log("Resposta da API:", response.data);
     } catch (error) {
-      console.error("Erro ao enviar dados ao banco:", error);
+      console.error("Erro ao enviar dados:", error);
+      alert("Erro ao enviar livros. Verifique sua conexão e tente novamente.");
     }
   };
 
@@ -47,7 +59,9 @@ export default function PageBook() {
               transformando sua vida de dentro para fora."
             </h4>
           </div>
+
           <div className="form-left">
+            {/* Entrada para a data */}
             <label htmlFor="dia" className="form_label-left" id="label-left">
               Dia
             </label>
@@ -61,8 +75,9 @@ export default function PageBook() {
               required
             />
 
+            {/* Entrada para o livro atual */}
             <label htmlFor="livros" className="form_label-left" id="label-left-livros">
-              Adicionar Livro
+              Livro Atual
             </label>
             <input
               type="text"
@@ -70,24 +85,16 @@ export default function PageBook() {
               className="form_input-left"
               id="livros"
               placeholder="Digite o nome do livro"
-              value={novoLivro}
-              onChange={(e) => setNovoLivro(e.target.value)} // Atualiza o estado do novo livro
+              value={livroAtual}
+              onChange={(e) => setLivroAtual(e.target.value)} // Atualiza o estado do livro atual
               required
             />
-
-            <div className="book-list">
-              <h4>Livros Adicionados:</h4>
-              <ul>
-                {livros.map((livro, index) => (
-                  <li key={index}>{livro}</li>
-                ))}
-              </ul>
-            </div>
           </div>
+
+          {/* Botão único que adiciona o livro à lista e o envia */}
           <div className="container-buttom">
-            {/* O botão agora adiciona um novo livro e envia os dados ao banco */}
             <ButtomBook
-              onClick={handleAddLivro} // A lógica de adicionar e enviar ao banco
+              onClick={handleAddAndSend} // Passa a lógica de adicionar e enviar
               dia={new Date(dia)}
               livrosLidos={livros}
             />
@@ -99,6 +106,10 @@ export default function PageBook() {
           <p>Conteúdo da página direita.</p>
         </div>
       </div>
+    </div>
+  );
+}
+
     </div>
   );
 }
