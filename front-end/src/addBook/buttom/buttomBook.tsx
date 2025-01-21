@@ -2,17 +2,15 @@ import axios from "axios";
 import "./buttonBook.sass";
 
 interface ButtomBookProps {
-  dia: Date | null; // Permite que `dia` seja opcional ou nulo
-  livrosLidos: string[];
-  onClick?: () => void;
+  dia: Date | null; // Data do dia
+  livro: string; // Livro digitado
+  onResetLivro: () => void; // Função para resetar o campo do livro
 }
 
 const baseUrlAddBook = "https://apibible.vercel.app/api/user/add-book";
 
-export default function ButtomBook({ dia, livrosLidos, onClick }: ButtomBookProps) {
+export default function ButtomBook({ dia, livro, onResetLivro }: ButtomBookProps) {
   const handleClickBook = async () => {
-    if (onClick) onClick();
-
     const token = localStorage.getItem("authToken");
 
     if (!token) {
@@ -20,57 +18,37 @@ export default function ButtomBook({ dia, livrosLidos, onClick }: ButtomBookProp
       return;
     }
 
-    // Verifica se o dia é válido
     if (!dia || isNaN(dia.getTime())) {
       alert("Por favor, selecione um dia válido antes de continuar.");
       return;
     }
 
-    const formattedDate = dia.toISOString().split("T")[0]; // Formata a data como "YYYY-MM-DD"
-
-    // Filtra os livros válidos
-    const livrosFiltrados = livrosLidos.filter((livro) => livro.trim() !== "");
-
-    if (livrosFiltrados.length === 0) {
-      alert("Nenhum livro válido foi adicionado.");
+    if (!livro) {
+      alert("Digite um nome válido para o livro antes de adicionar.");
       return;
     }
+
+    const formattedDate = dia.toISOString().split("T")[0];
 
     try {
       const response = await axios.post(
         baseUrlAddBook,
-        {
-          day: formattedDate,
-          books: livrosFiltrados,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { day: formattedDate, books: [livro] }, // Envia apenas o livro atual
+        { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert("Livros adicionados com sucesso!");
+
+      alert("Livro adicionado com sucesso!");
       console.log("Resposta da API:", response.data);
+
+      onResetLivro(); // Limpa o campo do livro após o envio
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response) {
-          if (error.response.status === 401) {
-            alert("Sessão expirada ou token inválido. Faça login novamente.");
-          } else {
-            alert(`Erro: ${error.response.data.message || "Tente novamente mais tarde."}`);
-          }
-        } else {
-          alert("Não foi possível conectar à API. Verifique sua conexão.");
-        }
-      } else {
-        alert("Erro inesperado. Por favor, tente novamente.");
-      }
-      console.error("Erro ao enviar dados:", error);
+      console.error("Erro ao adicionar livro:", error);
+      alert("Erro ao adicionar livro. Tente novamente.");
     }
   };
 
   return (
-    <div className="div-button" id="book-button">
+    <div className="div-button">
       <button className="button" onClick={handleClickBook}>
         Adicionar Livro
       </button>
