@@ -9,8 +9,29 @@ export default function PageBook() {
 
   const handleAddLivro = () => {
     if (novoLivro.trim() === "") return; // Não adiciona valores vazios
-    setLivros((prevLivros) => [...prevLivros, novoLivro.trim()]);
+
+    // Adiciona o livro à lista local
+    const livroAdicionado = novoLivro.trim();
+    setLivros((prevLivros) => [...prevLivros, livroAdicionado]);
+
+    // Envia os dados ao banco de dados
+    enviarDadosAoBanco(new Date(dia), [...livros, livroAdicionado]);
+
     setNovoLivro(""); // Limpa o campo de entrada
+  };
+
+  const enviarDadosAoBanco = async (diaSelecionado: Date, livrosAtualizados: string[]) => {
+    try {
+      // Aqui você deve ajustar para chamar sua API ou serviço que envia os dados ao banco de dados
+      await fetch("/api/salvarLeitura", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ dia: diaSelecionado, livros: livrosAtualizados }),
+      });
+      console.log("Dados enviados ao banco com sucesso!");
+    } catch (error) {
+      console.error("Erro ao enviar dados ao banco:", error);
+    }
   };
 
   return (
@@ -64,9 +85,9 @@ export default function PageBook() {
             </div>
           </div>
           <div className="container-buttom">
-            {/* O botão agora adiciona um novo livro */}
+            {/* O botão agora adiciona um novo livro e envia os dados ao banco */}
             <ButtomBook
-              onClick={handleAddLivro} // A lógica de adicionar é passada para o componente
+              onClick={handleAddLivro} // A lógica de adicionar e enviar ao banco
               dia={new Date(dia)}
               livrosLidos={livros}
             />
