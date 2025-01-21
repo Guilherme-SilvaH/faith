@@ -2,7 +2,7 @@ import axios from "axios";
 import "./buttonBook.sass";
 
 interface ButtomBookProps {
-  dia: Date;
+  dia: Date | null; // Permite que `dia` seja opcional ou nulo
   livrosLidos: string[];
   onClick?: () => void;
 }
@@ -11,9 +11,8 @@ const baseUrlAddBook = "https://apibible.vercel.app/api/user/add-book";
 
 export default function ButtomBook({ dia, livrosLidos, onClick }: ButtomBookProps) {
   const handleClickBook = async () => {
-    if (onClick) onClick(); // Executa o handler de adicionar o livro na lista
+    if (onClick) onClick();
 
-    const formattedDate = dia.toISOString().split("T")[0]; // Formata a data como "YYYY-MM-DD"
     const token = localStorage.getItem("authToken");
 
     if (!token) {
@@ -21,7 +20,15 @@ export default function ButtomBook({ dia, livrosLidos, onClick }: ButtomBookProp
       return;
     }
 
-    
+    // Verifica se o dia é válido
+    if (!dia || isNaN(dia.getTime())) {
+      alert("Por favor, selecione um dia válido antes de continuar.");
+      return;
+    }
+
+    const formattedDate = dia.toISOString().split("T")[0]; // Formata a data como "YYYY-MM-DD"
+
+    // Filtra os livros válidos
     const livrosFiltrados = livrosLidos.filter((livro) => livro.trim() !== "");
 
     if (livrosFiltrados.length === 0) {
