@@ -5,6 +5,7 @@ interface ButtomBookProps {
   dia: Date | null; 
   livro: string[] | string; 
   onResetLivro: () => void; 
+  onResetdia: () => void
 }
 
 const baseUrlAddBook = "https://apibible.vercel.app/api/user/add-book";

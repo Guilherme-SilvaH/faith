@@ -30,9 +30,9 @@ const addBookService = {
         (d) => new Date(d.day).toISOString().split("T")[0] === normalizedDay
       );
 
-      // Se o dia não existe, crie um novo
+      // Se o dia não existe, crie um novo e inicialize com os livros recebidos
       if (!existingDay) {
-        existingDay = { day: normalizedDay, books: [] };
+        existingDay = { day: normalizedDay, books: books };  // Inicializa books com o valor da requisição
         user.days.push(existingDay);
       }
 

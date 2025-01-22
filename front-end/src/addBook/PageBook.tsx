@@ -52,6 +52,7 @@ export default function PageBook() {
             {/* Passa os valores diretamente para o ButtomBook */}
             <ButtomBook
               dia={dia ? new Date(dia) : null}
+              onResetdia={() => setDia("")}
               livro={livro.trim() ? [livro.trim()] : []} 
               onResetLivro={() => setLivro("")}
             />
