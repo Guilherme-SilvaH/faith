@@ -60,9 +60,9 @@ export default function PageBook() {
         </div>
 
         <div className="page-right">
-          <h2>Página Direita</h2>
-          <p>Conteúdo da página direita.</p>
-          <GenereterVerses/>
+          <div>
+            <GenereterVerses/>
+          </div>
         </div>
       </div>
     </div>

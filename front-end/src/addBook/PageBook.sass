@@ -7,16 +7,20 @@
     background-color: rgb(250, 241, 241)
     height: 100vh
     flex-direction: column
-    background: linear-gradient(135deg, #7843e6, mix(white, #7843e6, 20%))
+    background: linear-gradient(135deg, #5B3A29, #A67B5B)
+    
     
     
 
     .container-dados
         display: flex 
-        background-color: rgb(255, 255, 255)
+        background-color: #FAF3E0
         width: 80%
         border-radius: 30px
         height: 50rem
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3)
+        
+        
         
 
         .page-left,
@@ -24,25 +28,24 @@
             flex: 1
             padding: 50px
 
+      
+           
+            
         .page-left 
             border-right: 1px solid #ccc
-            background-color: #f9f9f9
+            max-height:  100%
+            
             
 
             .left-title
                 text-align: center
-                color: #AF01FE
-                font-family: "Kalnia Glaze", serif
-                font-optical-sizing: auto
-                font-weight: 700
-                font-style: normal
-                font-variation-settings: 112.5
-                font-size: 19px
-                   
+                color: #5B3A29
+                font-family: "Charm", serif
+                margin-bottom: 4rem   
 
                 h4
                     margin-top: 2.2vw
-                    color: #000000
+                    color: #2A4D69
                     font-family: "Charm", serif
                     font-weight: 700
                     font-style: normal
@@ -58,21 +61,22 @@
                 gap: 10px
                 margin-top: 3vh 
                 font-family: "Open Sans", serif
+                flex-direction: row
+                
+               
                
 
                 
                 .form_label-left
                     display: flex
                     justify-content: center
-                    
                     text-align: center
-                    color: #650094
-                    font-family: "Kalnia Glaze", serif
-                    font-optical-sizing: auto
+                    color: #5B3A29
+                    font-family: "Charm", serif
                     font-weight: 700
-                    font-style: normal
-                    font-variation-settings: 112.5
                     font-size: 30px
+                    
+                    
                     
                   
                     
@@ -81,7 +85,7 @@
                     
 
                 .form_input-left
-                    padding: 5px
+                    padding: 7px
                     display: flex
                     align-items: center
                     border: 2px solid #000000
@@ -99,14 +103,14 @@
 
 
                     &:focus 
-                      border-color: #7843e6
+                      border-color: #2A4D69
                       box-shadow: 0 0 8px rgba(0, 123, 255, 0.5)
                       background-color: #fff
 
 
 
                     &:hover 
-                      border-color: #7843e6
+                      border-color: #2A4D69
 
 
                 #livros
@@ -116,5 +120,78 @@
                 
     
         .page-right 
-            background-color: #fff
-    
+            
+/* Responsividade */
+@media (max-width: 768px) 
+
+    body 
+        overflow: auto
+        height: 100%
+
+        .container-pageBook 
+            height: 100%
+            padding: 60px
+
+            .container-dados 
+                flex-direction: column
+                width: 95%
+                height: auto
+
+                .page-left,
+                .page-right 
+                    flex: unset
+                    padding: 20px
+
+                .page-left 
+                    border-right: none
+                    border-bottom: 1px solid #ccc
+                    height: 100%
+
+                .page-right 
+                    display: block
+                    height: 30rem
+
+                .left-title 
+                    margin-bottom: 2rem
+
+                    h4 
+                        font-size: 18px
+
+
+
+                .form-left 
+                    gap: 5px
+
+                    .form_label-left 
+                        font-size: 24px
+
+
+                    .form_input-left 
+                        font-size: 14px
+
+
+                    #livros 
+                        padding: 8px
+                        font-size: 14px
+ 
+
+@media (max-width: 480px) 
+    .container-pageBook 
+        padding: 10px
+
+        .container-dados 
+            border-radius: 20px
+
+            .page-left,
+            .page-right 
+                padding: 15px
+            
+
+            .form-left 
+                .form_label-left 
+                    font-size: 20px
+                
+
+                .form_input-left 
+                    padding: 5px
+                    font-size: 12px
