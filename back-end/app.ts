@@ -7,7 +7,7 @@ const app = express();
 
 // Habilitar CORS antes das rotas
 app.use(cors({
-  origin: ['https://my-bible-reader.vercel.app', 'http://localhost:3000'], 
+  origin: ['https://faith-nu.vercel.app', 'http://localhost:3000'], 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
