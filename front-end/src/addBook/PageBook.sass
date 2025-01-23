@@ -122,19 +122,19 @@
         .page-right 
             
 /* Responsividade */
-@media (max-width: 768px) 
+@media (min-width: 376px) and (max-width: 768px)
 
     body 
         overflow: auto
-        height: 100%
+        height: auto
 
         .container-pageBook 
-            height: 100%
-            padding: 60px
+            height: auto
+            padding: 20px
 
             .container-dados 
                 flex-direction: column
-                width: 95%
+                width: 22rem
                 height: auto
 
                 .page-left,
@@ -142,56 +142,99 @@
                     flex: unset
                     padding: 20px
 
+             
+
+                .page-right 
+                    display: block
+                    height: auto
+
+
                 .page-left 
                     border-right: none
                     border-bottom: 1px solid #ccc
                     height: 100%
+                    padding: 40px
+
+                    .left-title
+                        margin-bottom: 2rem
+                        font-size: 20px
+
+                        h4
+                            font-size: 22px
+                
+            
+                    .form-left 
+                        gap: 5px
+                        display: flex
+                        flex-direction: column
+
+                        .form_label-left 
+                            font-size: 40px
+
+
+                        .form_input-left 
+                            font-size: 14px
+
+
+                        #livros 
+                            padding: 8px
+                            font-size: 14px
+    
+
+@media (min-width: 0px) and (max-width: 375px)
+
+    body 
+        overflow: auto
+        height: auto
+
+        .container-pageBook 
+            height: auto
+            padding: 20px
+
+            .container-dados 
+                flex-direction: column
+                width: 21rem
+                height: auto
+
+                .page-left,
+                .page-right 
+                    flex: unset
+                    padding: 20px
+
+             
 
                 .page-right 
                     display: block
-                    height: 30rem
-
-                .left-title 
-                    margin-bottom: 2rem
-
-                    h4 
-                        font-size: 18px
+                    height: auto
 
 
+                .page-left 
+                    border-right: none
+                    border-bottom: 1px solid #ccc
+                    height: 100%
+                    padding: 40px
 
-                .form-left 
-                    gap: 5px
+                    .left-title
+                        margin-bottom: 2rem
+                        font-size: 20px
 
-                    .form_label-left 
-                        font-size: 24px
-
-
-                    .form_input-left 
-                        font-size: 14px
-
-
-                    #livros 
-                        padding: 8px
-                        font-size: 14px
- 
-
-@media (max-width: 480px) 
-    .container-pageBook 
-        padding: 10px
-
-        .container-dados 
-            border-radius: 20px
-
-            .page-left,
-            .page-right 
-                padding: 15px
-            
-
-            .form-left 
-                .form_label-left 
-                    font-size: 20px
+                        h4
+                            font-size: 22px
                 
+            
+                    .form-left 
+                        gap: 5px
+                        display: flex
+                        flex-direction: column
 
-                .form_input-left 
-                    padding: 5px
-                    font-size: 12px
+                        .form_label-left 
+                            font-size: 40px
+
+
+                        .form_input-left 
+                            font-size: 14px
+
+
+                        #livros 
+                            padding: 8px
+                            font-size: 14px

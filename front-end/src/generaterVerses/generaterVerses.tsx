@@ -34,7 +34,7 @@ export default function GenereterVerses() {
   return (
     <div className="container-generater">
       <div className="div-button-generater">
-        <button className="button" onClick={fetchVerse}>Gerar Versículo Aleatório</button>
+        <button className="button" onClick={fetchVerse}>Leitura Diária</button>
       </div>
       {verseData && (
       <div className="container-dados-gerador">

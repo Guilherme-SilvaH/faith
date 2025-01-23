@@ -10,7 +10,8 @@ export default function Cadastro() {
 
   return (
     <>
-      <div className="divPai-container">
+    <div className="body-main">
+      <div className="divPai-container" >
         <div className="divpai-formulario">
           <div className="dados-cadastro">
             <h1 className="form_title" id="id-cadastro">
@@ -67,6 +68,7 @@ export default function Cadastro() {
           </div>
         </div>
       </div>
+    </div>
     </>
   );
 }

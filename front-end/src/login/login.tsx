@@ -8,7 +8,7 @@ export default function Login() {
 
   return (
     <>
-      <div className="divPai-login">
+      <div className="divPai-login" id="body-main">
         <div className="divpai-formulario-login">
           <div className="dados-login">
             <h1 className="form_title-login" id="id-cadastro">
