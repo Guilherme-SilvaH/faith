@@ -63,7 +63,7 @@ export default function Cadastro() {
               <Buttom name={name} email={email} password={password} action="cadastro" />
             </div>
             <div className="ja-tem-uma-conta">
-              <a href="https://my-bible-reader.vercel.app/">Já tem uma conta?</a>
+              <a href="https://faith-nu.vercel.app/">Já tem uma conta?</a>
             </div>
           </div>
         </div>

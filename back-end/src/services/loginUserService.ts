@@ -35,7 +35,7 @@ const loginUserService = {
       }
 
       const token = jwt.sign(payload, process.env.SECRET as string, {
-        expiresIn: "2h",
+        expiresIn: "15m",
       });
 
       // Retorna os dados necessários para o login
