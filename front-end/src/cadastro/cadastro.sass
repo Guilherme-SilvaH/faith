@@ -1,117 +1,118 @@
 
-    @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap')
     
     
 
 
-    body
-        margin: 0
-        padding: 0
-        overflow: hidden
-        height: 100vh
+body
+    margin: 0
+    padding: 0
+    overflow: hidden
+    height: 100vh
+
+    .bg
+        background: linear-gradient(135deg, rgba(91, 58, 41, 0.8), rgba(161, 131, 131, 0.8)),url("../assets/_9c239cdd-a892-4050-8b6c-effa35202c39.jpg") no-repeat
+        background-position: center
     
-    .divPai-container
-        display: flex
-        justify-content: center
-        align-items: center
-        height: 100vh
-        flex-direction: column
-        background: linear-gradient(135deg, #5B3A29, #A67B5B)
-
-
-
-        .divpai-formulario
-            background-color: #FAF3E0
-            
-            width: 25%
-            border-radius: 45px
-            font-family: "Bungee", serif
-            height: 35rem
-
-            .dados-cadastro
-                display: flex
-                justify-content: center
-                align-items: center
-                display: flex
-                margin-top: 2vh
-                
-
-            .form_title
-                font-family: "Open Sans", serif
-                font-size: 23px
-                color: #5B3A29
-
-            
-            .main-form
-                margin-top: 10px
-                padding: 25px
-                
-
-                .ja-tem-uma-conta
-                    display: flex
-                    align-items: center
-                    justify-content: center
-                    font-family: "Open Sans", serif
-                    font-size: 15px
-                    margin-top: 10px
-
-                .dados-formulario
-                    flex-direction: column
-                    display: flex
-                    justify-content: center
-                    align-items: center
-                    display: flex
-
-                    .form_label
-                        font-size: 14px
-                        padding: 0 0 10px
-                        color: #2A4D69
-                        width: 100%
-                    
-                    #label-email
-                        margin-top: 20px
-
-                    #label-password
-                        margin-top: 20px
-                        
-
-                    .form_input
-                        width: 95%
-                        padding: 10px 15px
-                        font-size: 14px
-                        border: 2px solid #ccc
-                        border-radius: 10px
-                        outline: none
-                        transition: border-color 0.3s, box-shadow 0.3s
-                        background-color: #f9f9f9
-                        color: #333
-
-
-                        &::placeholder 
-                          color: #aaa
-                          font-style: italic
-
-
-
-                        &:focus 
-
-                          box-shadow: 0 0 2px #2A4D69
-                          background-color: #fff
-
-
-
-                        &:hover 
-                          border-color: #5B3A29
-                        
-@media screen and (max-width: 1024px)
-    body
         .divPai-container
+            display: flex
+            justify-content: center
+            align-items: center
+            height: 100vh
+            flex-direction: column
+            
             .divpai-formulario
-                background-color: rgb(255, 255, 255)
-                width: 80%
+                width: 20%
                 border-radius: 45px
                 font-family: "Bungee", serif
-                height: 35rem
+                height: 31rem
+                background: transparent
+
+                .dados-cadastro
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    display: flex
+                    margin-top: 20px
+
+
+                .form_title
+                    font-family: "Open Sans", serif
+                    font-size: 23px
+                    color: #ffffff
+
+
+                .main-form
+                    margin-top: 10px
+
+
+                    .ja-tem-uma-conta
+                        display: flex
+                        align-items: center
+                        justify-content: center
+                        font-family: "Open Sans", serif
+                        font-size: 14px
+                        margin-top: 10px
+
+                    .dados-formulario
+                        flex-direction: column
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                        display: flex
+
+                        .form_label
+                            font-size: 14px
+                            padding: 10px
+                            color: #FAF3E0
+                            width: 100%
+
+                        #label-email
+                            margin-top: 20px
+
+                        #label-password
+                            margin-top: 20px
+
+
+                        .form_input
+                            width: 95%
+                            padding: 10px 15px
+                            font-size: 14px
+                            border: 2px solid #ffffff
+                            border-radius: 10px
+                            outline: none
+                            transition: border-color 0.3s, box-shadow 0.3s
+                            background-color: #ffffff
+                            color: #333
+
+
+                            &::placeholder 
+                                color: #aaa
+                                font-style: italic
+
+
+
+                            &:focus
+
+                                border-color: #5B3A29
+                                box-shadow: 0 0 8px rgba(0, 123, 255, 0.5)
+                                background-color: #fff
+
+
+
+
+                            &:hover 
+                              border-color: #5B3A29
+
+@media screen and (max-width: 1024px)
+    body
+        .bg
+            .divPai-container
+                .divpai-formulario
+                    width: 80%
+                    border-radius: 45px
+                    font-family: "Bungee", serif
+                    height: 35rem
                         
 
 

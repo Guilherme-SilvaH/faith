@@ -2,12 +2,14 @@ import { useState } from "react";
 import "./login.sass"
 import Buttom from "../componets/buttom-formulario/buttom";
 
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   return (
     <>
+    <div className="bg">
       <div className="divPai-login" id="body-main">
         <div className="divpai-formulario-login">
           <div className="dados-login">
@@ -56,6 +58,7 @@ export default function Login() {
         </div>
         </div>
       </div>
+    </div>
     </>
   );
 }

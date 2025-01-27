@@ -1,7 +1,12 @@
 
-    @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap')
     
 
+.bg
+    background: linear-gradient(135deg, rgba(91, 58, 41, 0.8), rgba(161, 131, 131, 0.8)),url("../assets/_9c239cdd-a892-4050-8b6c-effa35202c39.jpg") no-repeat
+    background-position: center
+    background-size: cover
+    background-position: center
 
     #body-main
         margin: 0
@@ -15,18 +20,17 @@
         align-items: center
         height: 100vh
         flex-direction: column
-        background-image: url('/bg')
-        background-size: cover
-        background-position: center
+        
 
 
         .divpai-formulario-login
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3)
-            width: 25%
+            width: 20%
             border-radius: 45px
             font-family: "Bungee", serif
             height: 31rem
-            background-color: #FAF3E0
+            background: transparent
+            
+           
 
             .dados-login
                 display: flex
@@ -39,19 +43,19 @@
             .form_title-login
                 font-family: "Open Sans", serif
                 font-size: 23px
-                color: #5B3A29
+                color: #ffffff
 
             
             .main-form
                 margin-top: 10px
-                padding: 25px
+               
             
                 .nao-tem-uma-conta
                     display: flex
                     align-items: center
                     justify-content: center
                     font-family: "Open Sans", serif
-                    font-size: 15px
+                    font-size: 14px
                     margin-top: 10px
 
                 .dados-formulario
@@ -64,7 +68,7 @@
                     .form_label
                         font-size: 14px
                         padding: 10px
-                        color: #2A4D69
+                        color: #FAF3E0
                         width: 100%
 
                     #label-passoword
@@ -76,11 +80,11 @@
                         width: 95%
                         padding: 10px 15px
                         font-size: 14px
-                        border: 2px solid #ccc
+                        border: 2px solid #ffffff
                         border-radius: 10px
                         outline: none
                         transition: border-color 0.3s, box-shadow 0.3s
-                        background-color: #f9f9f9
+                        background-color: #ffffff
                         color: #333
 
 
@@ -101,12 +105,12 @@
                           border-color: #5B3A29
 
 @media screen and (max-width: 1024px)
-    
-    .divPai-login
-        .divpai-formulario-login
-            background-color: rgb(255, 255, 255)
-            width: 80%
-            border-radius: 45px
-            font-family: "Bungee", serif
-            height: 31rem
+
+    .bg
+        .divPai-login
+            .divpai-formulario-login
+                width: 80%
+                border-radius: 45px
+                font-family: "Bungee", serif
+                height: 31rem
 
