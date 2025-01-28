@@ -1,15 +1,18 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap')
-    
 
 .bg
     background-position: center
     background-size: cover
+    position: fixed // Adicionado para fixar o background
+    width: 100% // Garantir largura total
+    height: 100% // Garantir altura total
+    overflow: hidden // Prevenir scroll em qualquer situação
 
     #body-main
         margin: 0
         padding: 0
         height: 100vh
+        touch-action: manipulation // Evita comportamentos padrão de toque
 
     .divPai-login
         display: flex
@@ -17,8 +20,7 @@
         align-items: center
         height: 100vh
         flex-direction: column
-        
-
+        overflow: hidden // Garantir que não tenha scroll interno
 
         .divpai-formulario-login
             width: 20%
@@ -26,27 +28,22 @@
             font-family: "Bungee", serif
             height: 31rem
             background: transparent
-            
-           
+            position: relative // Para contenção absoluta dos elementos filhos
 
             .dados-login
                 display: flex
                 justify-content: center
                 align-items: center
-                display: flex
                 margin-top: 20px
-                
 
             .form_title-login
                 font-family: "Open Sans", serif
                 font-size: 23px
                 color: #ffffff
 
-            
             .main-form
                 margin-top: 10px
-               
-            
+
                 .nao-tem-uma-conta
                     display: flex
                     align-items: center
@@ -60,7 +57,6 @@
                     display: flex
                     justify-content: center
                     align-items: center
-                    display: flex
 
                     .form_label
                         font-size: 14px
@@ -70,48 +66,42 @@
 
                     #label-passoword
                         margin-top: 30px
-                        
-
 
                     .form_input
                         width: 95%
                         padding: 10px 15px
-                        font-size: 14px
+                        font-size: 16px // Tamanho mínimo para mobile
                         border: 2px solid #ffffff
                         border-radius: 10px
                         outline: none
                         transition: border-color 0.3s, box-shadow 0.3s
                         background-color: #ffffff
                         color: #333
-
+                        -webkit-overflow-scrolling: touch // Suaviza scroll em iOS
 
                         &::placeholder 
-                          color: #aaa
-                          font-style: italic
-
-
+                            color: #aaa
+                            font-style: italic
 
                         &:focus 
-                          border-color: #5B3A29
-                          box-shadow: 0 0 8px rgba(0, 123, 255, 0.5)
-                          background-color: #fff
-
-
+                            border-color: #5B3A29
+                            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5)
+                            background-color: #fff
 
                         &:hover 
-                          border-color: #5B3A29
+                            border-color: #5B3A29
 
 @media screen and (max-width: 1024px)
-  .bg
-    max-height: 100vh
-    .divPai-login
-      .divpai-formulario-login
-        width: 90vw
-        border-radius: 45px
-        font-family: "Bungee", serif
-        height: 50vh
-        
-        .main-form
-          .form_input
-            width: 80vw
-                    
+    .bg
+        max-height: 100vh
+        .divPai-login
+            .divpai-formulario-login
+                width: 90vw
+                height: auto // Altura flexível
+                min-height: 50vh // Altura mínima
+                padding: 20px // Espaçamento interno
+
+                .main-form
+                    .form_input
+                        width: 80vw
+                        font-size: 16px // Tamanho fixo para mobile
