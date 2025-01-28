@@ -4,23 +4,23 @@ html, body
     margin: 0
     padding: 0
     height: 100%
-    overflow: hidden // Previne scroll global
+    overflow: hidden 
 
 .bg
     background-position: center
     background-size: cover
-    position: fixed // Fixar o background
+    position: fixed 
     top: 0
     left: 0
-    width: 100% // Garantir largura total
-    height: 100% // Garantir altura total
-    overflow: hidden // Prevenir scroll
+    width: 100% 
+    height: 100% 
+    overflow: hidden 
 
     #body-main
         margin: 0
         padding: 0
         height: 100vh
-        touch-action: manipulation // Evita comportamentos padrão de toque
+        touch-action: manipulation 
 
     .divPai-login
         display: flex
@@ -28,7 +28,7 @@ html, body
         align-items: center
         height: 100vh
         flex-direction: column
-        overflow: hidden // Garantir que não tenha scroll interno
+        overflow: hidden
 
         .divpai-formulario-login
             width: 20%
@@ -36,7 +36,7 @@ html, body
             font-family: "Bungee", serif
             height: 31rem
             background: transparent
-            position: relative // Para contenção absoluta dos elementos filhos
+            position: relative 
 
             .dados-login
                 display: flex
@@ -78,14 +78,14 @@ html, body
                     .form_input
                         width: 95%
                         padding: 10px 15px
-                        font-size: 16px // Tamanho mínimo para mobile
+                        font-size: 16px 
                         border: 2px solid #ffffff
                         border-radius: 10px
                         outline: none
                         transition: border-color 0.3s, box-shadow 0.3s
                         background-color: #ffffff
                         color: #333
-                        -webkit-overflow-scrolling: touch // Suaviza scroll em iOS
+                        -webkit-overflow-scrolling: touch 
 
                         &::placeholder 
                             color: #aaa
@@ -106,11 +106,11 @@ html, body
         .divPai-login
             .divpai-formulario-login
                 width: 90vw
-                height: auto // Altura flexível
-                min-height: 50vh // Altura mínima
-                padding: 20px // Espaçamento interno
+                height: auto 
+                min-height: 50vh 
+                padding: 20px 
 
                 .main-form
                     .form_input
                         width: 80vw
-                        font-size: 16px // Tamanho fixo para mobile
+                        font-size: 16px 
