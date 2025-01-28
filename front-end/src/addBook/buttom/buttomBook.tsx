@@ -1,57 +1,78 @@
 import axios from "axios";
+import { format } from "date-fns";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 import "./buttonBook.sass";
 
 interface ButtomBookProps {
-  dia: Date | null; 
-  livro: string[] | string; 
-  onResetLivro: () => void; 
-  onResetdia: () => void
+  dia: Date | null;
+  livro: string[] | string;
+  onResetLivro: () => void;
+  onResetdia: () => void;
 }
 
 const baseUrlAddBook = "https://apibible.vercel.app/api/user/add-book";
 
-export default function ButtomBook({ dia, livro, onResetLivro }: ButtomBookProps) {
+export default function ButtomBook({ dia, livro, onResetLivro, onResetdia }: ButtomBookProps) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleClickBook = async () => {
     const token = localStorage.getItem("authToken");
 
     if (!token) {
-      alert("Você precisa estar logado para adicionar um livro.");
+      toast.error("Você precisa estar logado para adicionar um livro.");
       return;
     }
 
     if (!dia || isNaN(dia.getTime())) {
-      alert("Por favor, selecione um dia válido antes de continuar.");
+      toast.error("Por favor, selecione um dia válido antes de continuar.");
       return;
     }
 
-    if (!livro || livro.length === 0) {
-      alert("Digite um nome válido para o livro antes de adicionar.");
+    if (!Array.isArray(livro) || livro.length === 0) {
+      toast.error("Digite um nome válido para o livro antes de adicionar.");
       return;
     }
 
-    const formattedDate = dia.toISOString().split("T")[0];
+    const formattedDate = format(dia, "yyyy-MM-dd");
+
+    setIsLoading(true);
 
     try {
       const response = await axios.post(
         baseUrlAddBook,
-        { day: formattedDate, books: livro }, // Envia diretamente o array de livros
+        { day: formattedDate, books: livro },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      alert("Livro adicionado com sucesso!");
+      toast.success("Livro adicionado com sucesso!");
       console.log("Resposta da API:", response.data);
 
-      onResetLivro(); // Limpa o campo do livro após o envio
+      onResetLivro();
+      onResetdia();
     } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 401) {
+          toast.error("Sessão expirada. Faça login novamente.");
+          localStorage.removeItem("authToken");
+          window.location.href = "/";
+        } else {
+          toast.error(`Erro ao adicionar livro: ${error.response?.data.message || "Tente novamente."}`);
+        }
+      } else {
+        toast.error("Erro inesperado. Tente novamente.");
+      }
       console.error("Erro ao adicionar livro:", error);
-      alert("Erro ao adicionar livro. Tente novamente.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="div-button">
-      <button className="button" onClick={handleClickBook}>
-        Adicionar Livro
+      <button className="button" onClick={handleClickBook} disabled={isLoading}>
+        {isLoading ? "Adicionando..." : "Adicionar Livro"}
       </button>
     </div>
   );
