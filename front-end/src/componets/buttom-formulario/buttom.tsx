@@ -1,6 +1,8 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Para redirecionamento
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import "./buttos.sass";
+import { useState } from "react";
 
 interface ButtomProps {
   name?: string;
@@ -12,44 +14,68 @@ interface ButtomProps {
 const baseUrlCadastro = "https://apibible.vercel.app/api/user/cadastro";
 const baseUrlLogin = "https://apibible.vercel.app/api/user/login";
 
-export default function Buttom({ name, email, password, action }: ButtomProps) {
-  const navigate = useNavigate(); // Hook para navegação
+export default function Button({ name, email, password, action }: ButtomProps) {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
+    setIsLoading(true);
+    
     try {
-      const baseUrl = action === "cadastro" ? baseUrlCadastro : baseUrlLogin;
+      // Validação de campos vazios
+      if (action === "cadastro") {
+        if (!name || !email || !password) {
+          toast.error("Por favor, preencha todos os campos!");
+          return;
+        }
+      } else {
+        if (!email || !password) {
+          toast.error("Por favor, preencha todos os campos!");
+          return;
+        }
+      }
 
-      // Dados para login ou cadastro
-      const data = action === "cadastro"
-        ? { name, email, password }
+      const baseUrl = action === "cadastro" ? baseUrlCadastro : baseUrlLogin;
+      const data = action === "cadastro" 
+        ? { name, email, password } 
         : { email, password };
 
       const response = await axios.post(baseUrl, data);
-      
-      if (action === "cadastro") {
-        alert("Cadastro realizado com sucesso!");
-        // Redireciona para a página de login após cadastro
-        navigate("/"); // Rota de login
-      } else {
-        alert("Login realizado com sucesso!");
-        
-        // Salva o token no localStorage
-        localStorage.setItem("authToken", response.data.token);
 
-        // Redireciona para a página de add-book
-        navigate("/add-book"); // Página de adicionar livro
+      if (action === "cadastro") {
+        toast.success("Cadastro realizado com sucesso!");
+        navigate("/");
+      } else {
+        if (!response.data.token) {
+          throw new Error("Token não recebido");
+        }
+        
+        localStorage.setItem("authToken", response.data.token);
+        toast.success("Login realizado com sucesso!");
+        navigate("/add-book");
       }
-      console.log(response);
     } catch (error) {
-      console.error(`${action} erro:`, error);
-      alert(`${action === "cadastro" ? "Cadastro" : "Login"} falhou. Tente novamente.`);
+      let errorMessage = `${action === "cadastro" ? "Cadastro" : "Login"} falhou. Tente novamente.`;
+      
+      if (axios.isAxiosError(error)) {
+        errorMessage = error.response?.data?.message || errorMessage;
+      }
+      
+      toast.error(errorMessage);
+      console.error(`${action} error:`, error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="div-button">
-      <button className="button" onClick={handleClick}>
-        {action === "cadastro" ? "Cadastre-se" : "Entrar"}
+      <button 
+        className="button" 
+        onClick={handleClick} 
+        disabled={isLoading}
+      >
+        {isLoading ? "Carregando..." : (action === "cadastro" ? "Cadastre-se" : "Entrar")}
       </button>
     </div>
   );

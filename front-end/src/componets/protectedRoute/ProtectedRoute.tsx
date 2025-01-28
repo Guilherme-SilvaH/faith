@@ -12,7 +12,6 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     return <Navigate to="/" replace />;
   }
 
-  // Se houver token, renderize o componente filho
   return children;
 };
 
