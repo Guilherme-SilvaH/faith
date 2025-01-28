@@ -1,12 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+html, body
+    margin: 0
+    padding: 0
+    height: 100%
+    overflow: hidden // Previne scroll global
 
 .bg
     background-position: center
     background-size: cover
-    position: fixed // Adicionado para fixar o background
+    position: fixed // Fixar o background
+    top: 0
+    left: 0
     width: 100% // Garantir largura total
     height: 100% // Garantir altura total
-    overflow: hidden // Prevenir scroll em qualquer situação
+    overflow: hidden // Prevenir scroll
 
     #body-main
         margin: 0
@@ -94,6 +102,7 @@
 @media screen and (max-width: 1024px)
     .bg
         max-height: 100vh
+
         .divPai-login
             .divpai-formulario-login
                 width: 90vw
