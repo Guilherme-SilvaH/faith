@@ -1,8 +1,6 @@
 import { useState } from "react";
 import "./PageBook.sass";
 import ButtomBook from "./buttom/buttomBook";
-import GenereterVerses from "../generaterVerses/generaterVerses";
-
 
 export default function PageBook() {
   const [dia, setDia] = useState(""); // Data selecionada
@@ -54,7 +52,7 @@ export default function PageBook() {
             </div>
     
             <div className="container-buttom">
-              {/* Passa os valores diretamente para o ButtomBook */}
+    
               <ButtomBook
                 dia={dia ? new Date(dia) : null}
                 onResetdia={() => setDia("")}
