@@ -70,8 +70,8 @@ export default function ButtomBook({ dia, livro, onResetLivro, onResetdia }: But
   };
 
   return (
-    <div className="div-button">
-      <button className="button" onClick={handleClickBook} disabled={isLoading}>
+    <div className="div-button" id="div-button-addbook">
+      <button className="button" id="button-addbook" onClick={handleClickBook} disabled={isLoading}>
         {isLoading ? "Adicionando..." : "Adicionar Livro"}
       </button>
     </div>
