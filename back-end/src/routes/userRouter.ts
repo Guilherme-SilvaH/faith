@@ -19,6 +19,6 @@ userRouter.post('/add-book', Authenticate, addBookController); // Protegida pelo
 
 
 //Rota para mostra os Livros
-userRouter.post('/show-book', Authenticate, showBookController); // Protegida pelo middleware
+userRouter.get('/show-book', Authenticate, showBookController); // Protegida pelo middleware
 
 export default userRouter;
