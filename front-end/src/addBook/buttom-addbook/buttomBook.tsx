@@ -1,5 +1,5 @@
 import axios from "axios";
-import { formatISO } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
@@ -35,7 +35,10 @@ export default function ButtomBook({ dia, livro, onResetLivro, onResetdia }: But
       return;
     }
 
-    const formattedDate = formatISO(dia, { representation: 'date' }); // Novo formato
+    // Convert the selected date to UTC time zone
+    const utcDate = toZonedTime(dia, 'UTC');
+    // Format to ISO string in UTC
+    const formattedDate = utcDate.toISOString().split('T')[0];
 
     setIsLoading(true);
 

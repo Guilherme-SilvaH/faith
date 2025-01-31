@@ -7,6 +7,7 @@ interface IReading {
 }
 
 export interface IUser extends Document {
+  day: any;
   name: string;
   email: string;
   password: string;
@@ -14,6 +15,8 @@ export interface IUser extends Document {
 }
 
 const ReadingSchema: Schema = new Schema({
+
+  
   day: {
     type: Date,
     required: true,
@@ -64,6 +67,10 @@ const UserSchema: Schema = new Schema(
 
 UserSchema.pre<IUser>('save', async function (next) {
   if (!this.isModified('password')) return next();
+
+  if (this.day instanceof Date) {
+    this.day.setUTCHours(0, 0, 0, 0); // Força horário UTC
+  }
 
   try {
     const salt = await bcrypt.genSalt(10);

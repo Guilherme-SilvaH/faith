@@ -33,18 +33,13 @@ const addBookService = {
       }
 
       // Criando data UTC (00:00:00)
-      const utcDate = new Date(Date.UTC(
-        parsedDate.getUTCFullYear(),
-        parsedDate.getUTCMonth(),
-        parsedDate.getUTCDate()
-      ));
+      const [year, month, dayOfMonth] = day.split('-').map(Number);
+      const utcDate = new Date(Date.UTC(year, month - 1, dayOfMonth));
 
       // Correção do tipo: assegurar que day é Date
-      const existingDay = user.days.find((d: { day: Date }) => {
-        const storedDate = d.day instanceof Date ? d.day : new Date(d.day);
-        return formatISO(storedDate, { representation: 'date' }) === 
-               formatISO(utcDate, { representation: 'date' });
-      });
+      const existingDay = user.days.find(d => 
+        d.day.toISOString().split('T')[0] === utcDate.toISOString().split('T')[0]
+      );
 
       const uniqueBooks = [...new Set(books)];
 
