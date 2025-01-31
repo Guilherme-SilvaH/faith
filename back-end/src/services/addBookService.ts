@@ -25,12 +25,6 @@ const addBookService = {
         return;
       }
 
-      // Convertendo para Date e validando
-      const parsedDate = parseISO(day);
-      if (isNaN(parsedDate.getTime())) {
-        res.status(400).json({ message: "Data inválida." });
-        return;
-      }
 
       // Criando data UTC (00:00:00)
       const [year, month, dayOfMonth] = day.split('-').map(Number);

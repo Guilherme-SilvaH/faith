@@ -68,10 +68,17 @@ const UserSchema: Schema = new Schema(
 UserSchema.pre<IUser>('save', async function (next) {
   if (!this.isModified('password')) return next();
 
-  if (this.day instanceof Date) {
-    this.day.setUTCHours(0, 0, 0, 0); // Força horário UTC
+  if (this.days && this.days.length > 0) {
+    this.days.forEach(reading => {
+      if (reading.day instanceof Date) {
+        reading.day = new Date(Date.UTC(
+          reading.day.getUTCFullYear(),
+          reading.day.getUTCMonth(),
+          reading.day.getUTCDate()
+        ));
+      }
+    });
   }
-
   try {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
