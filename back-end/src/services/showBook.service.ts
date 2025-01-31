@@ -1,4 +1,4 @@
-import { parse, format, isValid } from "date-fns";
+import { parseISO , parse, format, isValid, formatISO } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import User from "../modules/user";
 import { IAuthRequest } from "../middleware/auth";
@@ -28,12 +28,12 @@ const showBookService = {
       }
       return null;
     };
-
-    const parsedDate = parseDate(day);
-    if (!parsedDate) {
+    const parsedDate = parseISO(day);
+    if (!isValid(parsedDate)) {
       res.status(400).json({ message: "Formato de data inválido." });
       return;
     }
+
 
     const normalizedDay = format(parsedDate, "yyyy-MM-dd");
 
@@ -45,8 +45,8 @@ const showBookService = {
       }
 
       const existingDay = user.days.find((d) => {
-        const storedDate = toZonedTime(d.day, "UTC");
-        return format(storedDate, "yyyy-MM-dd") === normalizedDay;
+        const storedDateStr = formatISO(d.day, { representation: 'date' });
+        return storedDateStr === normalizedDay;
       });
 
       if (!existingDay) {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { format } from "date-fns";
+import { formatISO } from "date-fns";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
@@ -35,7 +35,7 @@ export default function ButtomBook({ dia, livro, onResetLivro, onResetdia }: But
       return;
     }
 
-    const formattedDate = format(dia, "yyyy-MM-dd");
+    const formattedDate = formatISO(dia, { representation: 'date' }); // Novo formato
 
     setIsLoading(true);
 

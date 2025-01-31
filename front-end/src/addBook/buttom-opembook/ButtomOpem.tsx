@@ -30,8 +30,7 @@ export default function FilterBooks() {
 
     setIsLoading(true);
     try {
-      const response = await axios.get(`${baseUrlOpemBook}?day=${selectedDate}`, {
-        headers: { Authorization: `Bearer ${token}` }
+      const response = await axios.get(`${baseUrlOpemBook}?day=${selectedDate}`,  { headers: { Authorization: `Bearer ${token}` } 
       });
 
       setBooks(response.data.books || []);

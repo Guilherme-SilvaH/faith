@@ -2,7 +2,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 interface IReading {
-  day: string;
+  day: Date;
   books: string[];
 }
 

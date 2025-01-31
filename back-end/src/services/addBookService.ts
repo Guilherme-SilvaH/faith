@@ -1,6 +1,7 @@
 import User from "../modules/user";
 import { IAuthRequest } from "../middleware/auth";
 import { Response } from "express";
+import { parseISO, formatISO } from "date-fns";
 
 const addBookService = {
   async execute(req: IAuthRequest, res: Response): Promise<void> {
@@ -24,30 +25,46 @@ const addBookService = {
         return;
       }
 
-      const normalizedDay = new Date(day).toISOString().split("T")[0];
-
-      let existingDay = user.days.find(
-        (d) => new Date(d.day).toISOString().split("T")[0] === normalizedDay
-      );
-
-      // Se o dia não existe, crie um novo e inicialize com os livros recebidos
-      if (!existingDay) {
-        existingDay = { day: normalizedDay, books: books };  // Inicializa books com o valor da requisição
-        user.days.push(existingDay);
+      // Convertendo para Date e validando
+      const parsedDate = parseISO(day);
+      if (isNaN(parsedDate.getTime())) {
+        res.status(400).json({ message: "Data inválida." });
+        return;
       }
 
-      // Adiciona os livros, garantindo que não sejam duplicados
-      books.forEach((book) => {
-        if (!existingDay.books.includes(book)) {
-          existingDay.books.push(book);
-        }
+      // Criando data UTC (00:00:00)
+      const utcDate = new Date(Date.UTC(
+        parsedDate.getUTCFullYear(),
+        parsedDate.getUTCMonth(),
+        parsedDate.getUTCDate()
+      ));
+
+      // Correção do tipo: assegurar que day é Date
+      const existingDay = user.days.find((d: { day: Date }) => {
+        const storedDate = d.day instanceof Date ? d.day : new Date(d.day);
+        return formatISO(storedDate, { representation: 'date' }) === 
+               formatISO(utcDate, { representation: 'date' });
       });
 
-      await user.save(); // Atualiza o banco de dados
+      const uniqueBooks = [...new Set(books)];
+
+      if (!existingDay) {
+        user.days.push({ 
+          day: utcDate,
+          books: uniqueBooks
+        });
+      } else {
+        const newBooks = uniqueBooks.filter(book => 
+          !existingDay.books.includes(book)
+        );
+        existingDay.books.push(...newBooks);
+      }
+
+      await user.save();
 
       res.status(200).json({
         message: "Livros adicionados com sucesso!",
-        addedBooks: books,
+        addedBooks: uniqueBooks,
       });
     } catch (error) {
       console.error("Erro ao adicionar livros:", error);
