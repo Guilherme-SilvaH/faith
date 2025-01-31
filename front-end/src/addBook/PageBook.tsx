@@ -1,14 +1,16 @@
 import { useState } from "react";
 import "./PageBook.sass";
-import ButtomBook from "./buttom/buttomBook";
+import ButtomBook from "./buttom-addbook/buttomBook";
+import logo from "../assets/_e02457ba-08e1-4b7d-92db-7f2f77f34843-removebg-preview.png"
+import ButtonBook from "./buttom-opembook/ButtomOpem";
 
 export default function PageBook() {
   const [dia, setDia] = useState(""); // Data selecionada
   const [livro, setLivro] = useState(""); // Nome do livro digitado
 
   return (
-      <div className="container-pageBook">
-        <div className="container-dados">
+      <div className="container-pageBook" >
+        <div className="container-dados" id="bg">
           <div className="page-main">
             <div className="left-title">
               <h1>ADCIONE A SUA LEITURA AQUI</h1>
@@ -51,19 +53,32 @@ export default function PageBook() {
               </div>
             </div>
     
-            <div className="container-buttom">
-    
-              <ButtomBook
-                dia={dia ? new Date(dia) : null}
-                onResetdia={() => setDia("")}
-                livro={livro.trim() ? [livro.trim()] : []} 
-                onResetLivro={() => setLivro("")}
-              />
-            </div>
+              <div className="container-buttom">
+                  <ButtomBook
+                    dia={dia ? new Date(dia) : null}
+                    onResetdia={() => setDia("")}
+                    livro={livro.trim() ? [livro.trim()] : []} 
+                    onResetLivro={() => setLivro("")}
+                  />
+              </div>
+
+
+               <div className="opem-bookadded">
+                  <section className="section-infobook">
+                      <h1>Quer conhecer mais sobre a Faith? Clique no icone abaixo </h1>
+                      <img src={logo}></img>
+                  </section>
+
+                  <section className="secion-bookadded">
+                    <h1> Mostrar livros </h1>
+                    <ButtonBook/>
+                  </section>
+              </div>
+
+
           </div>
-    
-        </div>
       </div>
+    </div>
   );  
 } 
   
