@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Charm:wght@400;700&family=Kalnia+Glaze:wght@100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Parisienne&display=swap')
+
+
+
+.container-pageBook
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    overflow: auto
+    position: relative
+    width: 100vw
+    min-height: 100vh
+
+    
+    
+
+
+    .container-dados
+        display: flex 
+        width: 60%
+        border-radius: 30px
+        justify-content: center
+        align-self: center
+        flex-direction: column
+        
+
+        .page-main 
+
+
+            .left-title
+                text-align: center
+                color: #230C02
+                font-size: 25px
+
+                h4
+                    margin-top: 1vw
+                    color: #180802
+                    font-family: "Charm", serif
+                    font-weight: 700
+                    font-style: normal
+                    font-size: 35px
+
+            .form-left
+                display: flex
+                align-items: center
+                justify-content: center
+                font-family: "Open Sans", serif
+                flex-direction: row
+                text-align: center
+                gap: 7vw
+                margin-bottom: 3vh
+
+                .div-label
+                    
+                    .form_label-left
+                        color: #5B3A29
+                        font-family: "Charm", serif
+                        font-weight: 700
+                        font-size: 60px
+
+                    .form_input-left
+                        padding: 10px
+                        display: flex
+                        align-items: center
+                        border: 2px solid #000000
+                        border-radius: 10px
+                        outline: none
+                        transition: border-color 0.3s, box-shadow 0.3s
+                        color: #333
+                        width: 10vw
+                        
+
+                        &::placeholder 
+                            color: #aaa
+                            font-style: italic
+                        &:focus 
+                          border-color: #2A4D69
+                          box-shadow: 0 0 8px rgba(0, 123, 255, 0.5)
+                          background-color: #fff
+                        &:hover 
+                          border-color: #2A4D69
+
+                    #livros
+                        padding: 10px
+                        font-size: 15px
+
+            .container-buttom
+                display: flex
+                flex-direction: column
+                flex-wrap: wrap
+                align-items: center
+
+            
+                      
+
+            
+
+
+/* Responsividade */
+@media (min-width: 0px) and (max-width: 768px)
+
+        .container-pageBook
+            background-size: unset
+
+            .container-dados 
+                flex-direction: column
+                width: 100vw
+                justify-content: flex-start
+                
+
+        
+                .page-main  
+                    padding: 20px
+                    height: auto
+
+                    .left-title
+                        margin-bottom: 2rem
+                        font-size: 20px
+
+
+                        h4
+                            font-size: 30px
+                            font-weight: bold
+                
+            
+                    .form-left 
+                        gap: 5px
+                        display: flex
+                        flex-direction: column
+                        margin-bottom: 40px
+                        
+
+                        .div-label
+
+                            .form_label-left 
+                                font-size: 40px
+
+
+                            .form_input-left 
+                                font-size: 14px
+                                padding: 12px
+                                width: 60vw
+
+                            #livros 
+                                padding: 8px
+                                font-size: 14px
+
+                    #div-button-addbook
+                        margin-bottom: 10rem
+                        
+                        
+                      
+
+                        #button-addbook
+                            color: #000000
+
+    
+
+

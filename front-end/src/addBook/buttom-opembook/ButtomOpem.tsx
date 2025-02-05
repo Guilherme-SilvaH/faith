@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { parse, isValid } from "date-fns";
+import "./ButtomOpem.sass"
 
 const baseUrlOpemBook = "https://apibible.vercel.app/api/user/show-book";
 
@@ -57,8 +58,9 @@ export default function FilterBooks() {
           type="date"
           value={selectedDate}
           onChange={(e) => setSelectedDate(e.target.value)}
+          className="input-button-opem"
         />
-        <button onClick={handleFilterBooks} disabled={isLoading}>
+        <button onClick={handleFilterBooks} disabled={isLoading} className="button-opem">
           {isLoading ? "Carregando..." : "Filtrar"}
         </button>
       </div>

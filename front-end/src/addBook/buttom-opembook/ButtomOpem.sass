@@ -1,0 +1,68 @@
+
+
+
+.filter-books-container
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    h2
+        font-size: 2rem
+
+    .filter-inputs
+        display: flex
+        flex-direction: column
+        gap: 40px
+        justify-content: center
+        align-items: center
+
+        .button-opem
+            border-radius: 20px
+            border: 1px 
+            width: 10rem
+            color: #000000
+            font-size: 15px
+            font-family: "Open Sans", serif
+            background: #B28F62
+            cursor: pointer
+            font-weight: bold
+            padding: 10px
+
+            &::placeholder 
+                color: #2e927c23
+                font-style: itaitalic
+
+            &:focus 
+              border-color: #B28F62
+              box-shadow: 0 0 8px rgba(255, 255, 255, 0.5)
+             
+
+            &:hover 
+              background-color: lighten(#B28F62, 10%)
+              
+
+
+        .input-button-opem
+            background-color: #8B5E3C
+            color: #FFF
+            border: none
+            padding: 10px 15px
+            font-size: 16px
+            border-radius: 8px
+            outline: none
+            cursor: pointer
+            transition: 0.3s
+            text-align: center
+            width: 10vw
+            display: flex
+            justify-content: center
+
+            &::-webkit-calendar-picker-indicator
+                filter: invert(1) 
+
+            &:hover
+              background-color: darken(#8B5E3C, 10%)
+
+            &:focus
+              box-shadow: 0 0 5px #A67C52
+            
