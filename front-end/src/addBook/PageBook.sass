@@ -4,23 +4,24 @@ html, body
   padding: 0
     
 .div-pageBook
-    display: flex
-    flex-direction: column
-    width: 100vw
-    overflow-x: hidden // Impede scroll horizontal
-    background: url("../assets/2697235.jpg") no-repeat center
-    background-size: cover
-    overflow: auto
-    position: relative
-    width: 100vw
-    min-height: 100vh
+  display: flex
+  flex-direction: column
+  width: 100vw
+  overflow-x: hidden // Impede scroll horizontal
+  background: url("../assets/2697235_notebook.jpg") no-repeat center
+  background-size: cover
+  overflow: auto
+  position: relative
+  min-height: 100vh
 
-    
-    > * 
-        width: 100% // Garante que os filhos ocupem toda largura
+  > *
+    width: 100% // Garante que os filhos ocupem toda largura
+
+// Media Query para Mobile
+@media (min-width: 0px) and (max-width: 768px)
+
+  body
   
-  @media (min-width: 0px) and (max-width: 768px)
-    
-  .div-pageBook
-    background-size: contain
-    background-position: center center
+    .div-pageBook
+      background: url("../assets/2697235_mobile.jpg") no-repeat center
+      background-size: cover
