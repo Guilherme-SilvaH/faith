@@ -1,8 +1,6 @@
-
-// MyVerticallyCenteredModal.tsx
 import Button from 'react-bootstrap/Button';
 import Modal, { ModalProps } from 'react-bootstrap/Modal';
-import styles from "./Modal.module.sass"; // agora usando CSS Modules
+import styles from "./Modal.module.scss"; // Importando o SCSS como CSS Module
 
 interface MyModalProps extends ModalProps {}
 
