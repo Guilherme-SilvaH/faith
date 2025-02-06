@@ -2,6 +2,7 @@ import './App.sass';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify'; // Adicione esta importação
 import 'react-toastify/dist/ReactToastify.css'; // Adicione se não estiver em outro lugar
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import CadastroPage from "../cadastro/cadastro";
 import LoginPage from "../login/login";
