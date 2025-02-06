@@ -12,7 +12,7 @@ export default function ContainerBook() {
         <div className="container-dados" id="bg">
           <div className="page-main">
             <div className="left-title">
-              <h1>ADCIONE A SUA LEITURA AQUI</h1>
+              <h1 className="h1-class-containerbook">ADCIONE A SUA LEITURA AQUI</h1>
               <h4>
                 "A cada dia em que você se dedica a ler a Bíblia, está construindo um elo mais forte com Deus. Cada versículo, cada história, cada ensinamento, são passos que te aproximam mais do Seu amor e da Sua sabedoria. A palavra de Deus é luz para os nossos caminhos e força para o nosso coração. Não importa o ritmo, o importante é a constância e a fé. Dedique um tempo diário para refletir e permitir que Ele fale com você, transformando sua vida de dentro para fora."
               </h4>
@@ -59,7 +59,7 @@ export default function ContainerBook() {
                     livro={livro.trim() ? [livro.trim()] : []} 
                     onResetLivro={() => setLivro("")}
                   />
-                  <h2>Quer conhecer mais sobre a Faith? Clique no ícone abaixo </h2>
+                  
               </div>
           </div>
       </div>

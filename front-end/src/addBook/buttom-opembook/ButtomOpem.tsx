@@ -52,7 +52,7 @@ export default function FilterBooks() {
 
   return (
     <div className="filter-books-container">
-      <h2>Filtrar livros por data</h2>
+      <h2 className="h2-buttomOpem">Filtre os livros adicionados por data</h2>
       <div className="filter-inputs">
         <input
           type="date"

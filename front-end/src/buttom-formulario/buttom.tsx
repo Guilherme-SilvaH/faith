@@ -14,7 +14,7 @@ interface ButtomProps {
 const baseUrlCadastro = "https://apibible.vercel.app/api/user/cadastro";
 const baseUrlLogin = "https://apibible.vercel.app/api/user/login";
 
-export default function Button({ name, email, password, action }: ButtomProps) {
+export default function ButtonForm({ name, email, password, action }: ButtomProps) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -71,7 +71,7 @@ export default function Button({ name, email, password, action }: ButtomProps) {
   return (
     <div className="div-button">
       <button 
-        className="button" 
+        className="button-form" 
         onClick={handleClick} 
         disabled={isLoading}
       >

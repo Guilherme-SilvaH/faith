@@ -1,0 +1,63 @@
+.modal-backdrop
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: rgba(0, 0, 0, 0.5) // Fundo semitransparente
+
+.modal-dialog
+    display: flex
+    justify-content: center
+    align-items: center
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    z-index: 1050 // Garante que o modal fique acima de outros elementos
+
+
+.modal-content
+    border-radius: 8px
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1)
+    background-color: rgba(255, 255, 255, 0.9)
+    width: 500px  // Definindo uma largura fixa para o modal
+    max-width: 100%  // Permite que o modal seja responsivo até uma certa largura
+    margin: 0 auto
+    padding: 20px
+
+    .modal-header
+        border-bottom: none
+        padding-bottom: 15px
+
+    .modal-title
+        font-size: 2rem
+        font-weight: bold
+        color: #333
+
+    .modal-body
+        padding: 20px 0
+        font-size: 1.2rem
+        line-height: 1.6
+        color: #555
+
+    .modal-footer
+
+        border-top: none
+        display: flex
+        justify-content: flex-end
+        padding-top: 15px
+
+    button
+
+        background-color: #007bff
+        color: white
+        border: none
+        padding: 10px 20px
+        font-size: 1rem
+        border-radius: 5px
+        cursor: pointer
+        transition: background-color 0.3s ease
+
+        &:hover
+          background-color: #0056b3

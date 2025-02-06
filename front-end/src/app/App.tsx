@@ -1,4 +1,4 @@
-import './App.css';
+import './App.sass';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify'; // Adicione esta importação
 import 'react-toastify/dist/ReactToastify.css'; // Adicione se não estiver em outro lugar

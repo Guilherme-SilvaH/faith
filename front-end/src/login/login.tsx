@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./login.sass"
-import Buttom from "../componets/buttom-formulario/buttom";
+import Buttom from "../buttom-formulario/buttom";
 
 
 export default function Login() {
