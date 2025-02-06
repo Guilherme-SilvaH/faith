@@ -15,7 +15,7 @@ export default function OpenBookPage() {
       <h2 className="h2-class">Quer conhecer mais sobre a Faith? Clique no ícone abaixo </h2>
       <section className="section-infobook">
           <img src={logo} alt="Logo"  onClick={() => setModalShow(true)}/>
-            <MyVerticallyCenteredModal variant="primary" className="modal" show={modalShow} onHide={() => setModalShow(false)} />
+            <MyVerticallyCenteredModal show={modalShow} onHide={() => setModalShow(false)} />
       </section>
       <section className="section-bookadded">
           <FilterBooks />
