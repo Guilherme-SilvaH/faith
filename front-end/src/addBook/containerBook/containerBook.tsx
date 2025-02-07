@@ -23,7 +23,7 @@ export default function ContainerBook() {
             </h4>
           </div>
 
-          <div className="form-left" data-aos="fade-left">
+          <div className="form-left" >
             <div className="div-label">
               <label htmlFor="dia" className="form_label-left">Dia</label>
               <input
@@ -51,7 +51,7 @@ export default function ContainerBook() {
             </div>
           </div>
 
-          <div className="container-buttom" data-aos="zoom-in">
+          <div className="container-buttom" >
             <ButtomBook
               dia={dia ? new Date(dia) : null}
               onResetdia={() => setDia("")}
