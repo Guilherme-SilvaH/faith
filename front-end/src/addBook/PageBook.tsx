@@ -5,7 +5,7 @@ import OpenBookPage from "./opemBook/opembookpage"
 
 export default function PageBook() {
   return (
-    <div className="div-pageBook">
+    <div className="div-pageBook" >
       <ContainerBook />
       <OpenBookPage />
     </div>

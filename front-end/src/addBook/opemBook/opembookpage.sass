@@ -1,33 +1,52 @@
 
 
 .opem-bookadded
-    width: 100vw
     display: flex
-    flex-direction: column
     justify-content: center
     align-items: center
+    flex-direction: column
+    position: relative
+    width: 100vw
+    margin: 0
+    padding: 0
+    max-height: 100%
+    
+    .inf
 
-    .h2-class
-        font-size: 2em
-        font-family: "Open Sans", serif
-
-   
-
-    .section-infobook
-        position: relative
-        z-index: 2
         display: flex
-        justify-content: center
         align-items: center
-        flex-direction: column
-        width: 100%
-        
-        img
-            transition: transform 0.5s ease
-            width: 20vw
+        max-width: 100vw
+            
+    
+        .h2-class-div
+            max-width: 50%
+            flex-direction: column
+            display: flex
+            justify-content: center
+            align-items: center
+            text-align: center
+            padding: 20px
+    
+            .h2-class
+                font-size: 2em
+                font-family: "Open Sans", serif
+                
+        .section-infobook
+            position: relative
+            z-index: 2
+            display: flex
+            justify-content: center
+            align-items: center
+            flex-direction: column
+            width: 50%
 
-            &:hover
-                transform: scale(1.05)
+            img
+                transition: transform 0.5s ease
+                width: 38rem
+                
+
+                &:hover
+                    transform: scale(1.05)
 
     .section-bookadded
         position: relative
@@ -36,3 +55,60 @@
         display: flex
         justify-content: center
         padding: 2rem 0
+
+@media (min-width: 0px) and (max-width: 768px)
+
+    .opem-bookadded
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        position: relative
+        width: 100vw
+        margin: 0
+        padding: 0
+        max-height: 100%
+    
+        .inf
+        
+            display: flex
+            align-items: center
+            max-width: 100vw
+            flex-direction: column
+
+
+            .h2-class-div
+                display: flex
+                justify-content: center
+                align-items: center
+                text-align: center
+                padding: 20px
+                margin-top: 5rem
+
+                .h2-class
+                    font-size: 2em
+                    width: 100vw
+                    font-family: "Open Sans", serif
+
+            .section-infobook
+                display: flex
+                width: 50%
+
+                img
+                    transition: transform 0.5s ease
+                    width: 20rem
+
+
+                    &:hover
+                        transform: scale(1.05)
+
+        .section-bookadded
+            
+            width: 100%
+            display: flex
+            justify-content: center
+            padding: 2rem 0
+            display: flex
+            justify-items: center
+            align-items: center
+

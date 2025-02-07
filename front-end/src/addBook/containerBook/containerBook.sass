@@ -7,42 +7,50 @@
     justify-content: center
     align-items: center
     flex-direction: column
-    overflow: auto
     position: relative
     width: 100vw
-    min-height: 100vh
-
+    margin: 0
+    padding: 0
+    height: 100vh
     
     
 
 
     .container-dados
         display: flex 
-        width: 65%
+        width: 75vw
         border-radius: 30px
         justify-content: center
-        align-self: center
         flex-direction: column
+        align-items: center
+
         
 
         .page-main 
-
+            padding: 2rem
+            height: 100%
 
             .left-title
+                margin-top: 5vh
+                line-height: 1.6
 
                 .h1-class-containerbook
                     text-align: center
-                    color: #230C02
-                    font-size: 3rem
+                    color: #5B3A29
+                    font-size: 4rem
                     font-family: "Open Sans", serif
+                    font-weight: 700
+                
 
                 h4
-                    margin-top: 1vw
+                    margin-top: 5vh
                     color: #180802
                     font-family: "Charm", serif
                     font-weight: 700
                     font-style: normal
                     font-size: 35px
+                    margin-bottom: 5vh
+                    
 
             .form-left
                 display: flex
@@ -55,34 +63,49 @@
                 margin-bottom: 3vh
 
                 .div-label
-                    
+                    width: 10vw
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    flex-direction: column
+
                     .form_label-left
                         color: #5B3A29
-                        font-family: "Charm", serif
+                        font-family: "Open Sans", serif
                         font-weight: 700
-                        font-size: 60px
+                        font-size: 30px
 
                     .form_input-left
-                        padding: 10px
+                        padding: 12px 15px
                         display: flex
-                        align-items: center
-                        border: 2px solid #000000
+                        align-items: start
+                        border: 2px solid #5B3A29
                         border-radius: 10px
                         outline: none
-                        transition: border-color 0.3s, box-shadow 0.3s
+                        transition: all 0.3s ease
                         color: #333
-                        width: 10vw
-                        
+                        font-size: 16px
+                        background-color: #fff
+                
+                        padding-left: 40px
+
+                 
+                
 
                         &::placeholder 
                             color: #aaa
                             font-style: italic
+
                         &:focus 
-                          border-color: #2A4D69
-                          box-shadow: 0 0 8px rgba(0, 123, 255, 0.5)
-                          background-color: #fff
+                            border-color: #FFD700
+                            box-shadow: 0 0 8px rgba(255, 215, 0, 0.5)
+                            background-color: #fff
+
                         &:hover 
-                          border-color: #2A4D69
+
+                            border-color: #FFD700
+
+                       
 
                     #livros
                         padding: 10px
@@ -113,17 +136,19 @@
                 
 
         
-                .page-main  
+                .page-main
+
                     padding: 20px
-                    height: auto
+                    height: 100vh
 
                     .left-title
                         margin-bottom: 2rem
-                        font-size: 20px
 
+                        .h1-class-containerbook
+                            font-size: 2rem
 
                         h4
-                            font-size: 30px
+                            font-size: 24px
                             font-weight: bold
                 
             

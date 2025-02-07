@@ -52,7 +52,7 @@ export default function FilterBooks() {
 
   return (
     <div className="filter-books-container">
-      <h2 className="h2-buttomOpem">Filtre os livros adicionados por data</h2>
+      <h2 className="h2-buttomOpem">Busque os livros adicionado por dadas</h2>
       <div className="filter-inputs">
         <input
           type="date"
@@ -68,13 +68,13 @@ export default function FilterBooks() {
       <div className="book-list">
         <h3>Livros encontrados:</h3>
         {books.length > 0 ? (
-          <ul>
+          <ul className="livros-opem">
             {books.map((book, index) => (
               <li key={index}>{book}</li>
             ))}
           </ul>
         ) : (
-          <p>Nenhum livro encontrado.</p>
+          <p className="livros-opem">Nenhum livro encontrado.</p>
         )}
       </div>
     </div>
