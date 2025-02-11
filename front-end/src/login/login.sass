@@ -9,7 +9,8 @@
     left: 0
     width: 100vw 
     height: 100vh 
-    overflow: hidden 
+    overflow: hidden
+    backdrop-filter: blur(10px)
 
 #body-main
     margin: 0
@@ -37,7 +38,7 @@
     font-family: "Open Sans", serif
     padding: 20px
     box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.5)
-    backdrop-filter: blur(10px)
+
 
     .dados-login
         display: flex
@@ -88,7 +89,7 @@
                 transition: border-color 0.3s, box-shadow 0.3s
                 background-color: #ffffff
                 color: #333
-                -webkit-overflow-scrolling: touch 
+                 
                 
                 &::placeholder 
                     color: #aaa
