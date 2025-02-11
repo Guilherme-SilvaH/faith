@@ -6,7 +6,9 @@
 
 
 .bg
-    background: url("../assets/_9c239cdd-a892-4050-8b6c-effa35202c39.jpg") 
+    background: linear-gradient(135deg, #FFD700, #556B2F, #F7F3EE)
+    background-size: 200% 200%
+    animation: gradientAnimation 15s ease infinite
     background-position: center
 
     .divPai-container
@@ -22,6 +24,10 @@
             height: 31rem
             background: transparent
             font-family: "Open Sans", serif
+            background: rgba(255, 255, 255, 0.2)
+            padding: 20px
+            box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.5)
+            backdrop-filter: blur(10px)
 
             .dados-cadastro
                 display: flex
@@ -88,6 +94,20 @@
                             background-color: #fff
                         &:hover 
                           border-color: #5B3A29
+
+                        
+@keyframes gradientAnimation 
+  0% 
+    background-position: 0% 50%
+  
+  50% 
+    background-position: 100% 50%
+  
+  100% 
+    background-position: 0% 50%
+  
+
+
 
 @media screen and (max-width: 1024px)
     
