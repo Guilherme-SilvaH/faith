@@ -3,7 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css"; // Importa os estilos do AOS
 import "./containerBook.sass";
 import ButtomBook from "../buttom-addbook/buttomBook";
-import RetroImage from "../../assets/and Retro!.svg"
+import RetroImage from "../../assets/retro.png"
 
 export default function ContainerBook() {
   const [dia, setDia] = useState("");
