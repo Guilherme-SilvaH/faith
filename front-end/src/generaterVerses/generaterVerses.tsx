@@ -1,11 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import verseIcon from "../assets/bible_PNG48.png"; 
+import "./generaterVerses.sass"
 
 const generaterApi = "https://bible-api.com/data/almeida/random";
 
-// Definição do tipo dos dados do versículo
 interface BooksGenerate {
   book: string;
   chapter: number;
@@ -17,11 +17,10 @@ function GeneratorVerses({ ...props }) {
   const [show, setShow] = useState(false);
   const [verseData, setVerseData] = useState<BooksGenerate | null>(null);
 
-  // Configuração correta do Offcanvas
   const options = {
     name: "Leitura Diária",
-    scrollable: true, // Habilita a rolagem dentro do Offcanvas
-    backdrop: true, // Ativa o fundo escuro ao redor do Offcanvas
+    scrollable: true,
+    backdrop: true,
   };
 
   const handleClose = () => setShow(false);
@@ -40,28 +39,21 @@ function GeneratorVerses({ ...props }) {
 
   return (
     <>
-      {/* Botão com o nome correto */}
-        <Button style={{
-        backgroundColor: "#ff5733",
-        color: "white",
-        padding: "10px 20px",
-        borderRadius: "8px",
-        fontSize: "16px",
-        border: "none",
-      }}
+      {/* Imagem clicável para abrir o Offcanvas */}
+      <img
+        src={verseIcon}
+        alt="Ícone de Leitura Diária"
+        onClick={handleShow}
+        className="img-generater"
+      />
 
-      variant="primary" onClick={handleShow} className="me-2" id="btn-genereter">
-        {options.name}
-      </Button>
-
-      {/* Offcanvas com opções corrigidas */}
       <Offcanvas
         show={show}
         onHide={handleClose}
-        scrollable={options.scrollable} 
+        scrollable={options.scrollable}
         backdrop={options.backdrop}
         {...props}
-        className="bg-dark text-light"
+        
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Leitura Diária</Offcanvas.Title>

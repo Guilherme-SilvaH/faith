@@ -15,14 +15,31 @@ export default function OpenBookPage() {
     <div className="opem-bookadded">
       <div className="inf">
           <div className="h2-class-div">
-            <h2 className="h2-class">Aproveite e leia um versiculo diario</h2>
+            <h1 className="h2-class">Gerador de <span className="inf-highlight">Versículo</span></h1>
+            <h6 className="h6-class">O gerador de versículo ajuda você a se fortalecer espiritualmente e a tornar a leitura mais acessível no dia a dia.</h6>
+            <p className="p-class">clique no ícone ao lado.</p>
+          </div>
+          <div className="container-genereterVerses">
             <GenereterVerses/>
           </div>
-          <section className="section-infobook">
-              <img src={logo} alt="Logo"  onClick={() => setModalShow(true)}/>
-                <MyVerticallyCenteredModal show={modalShow} onHide={() => setModalShow(false)} />
-          </section>
+          
       </div>
+      <section className="section-infobook">
+        <div className="modal-img">
+          <img src={logo} alt="Logo"  onClick={() => setModalShow(true)}/>
+          <MyVerticallyCenteredModal show={modalShow} onHide={() => setModalShow(false)} />
+        </div>
+        <div className="infobook">
+          <h1>
+            SOBRE
+          </h1>
+          <h6 className="h6-infobook-title">
+            Quer conhecer mais sobre a <span className="infobook-highlight">FAITH</span>{" "}
+            e seu propósito no desenvolvimento?
+          </h6>
+          <p className="infobook-text-p">Clique na imagem ao lado e descubra!</p>
+        </div>
+          </section>
       <section className="section-bookadded">
           <FilterBooks />
       </section>

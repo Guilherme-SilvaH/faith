@@ -9,44 +9,92 @@
     width: 100vw
     margin: 0
     padding: 0
-    max-height: 100%
     
     .inf
-
         display: flex
         align-items: center
         max-width: 100vw
+        width: 75vw
+        margin-top: 3rem
+        padding: 20px
+        margin-top: 5rem
+        
+
+
+        .h2-class-div
+        
+            display: flex
+            width: 50%
+            flex-wrap: wrap
+            align-content: center
+            
+            
+
+            .h2-class
+                font-size: 3.5em
+                font-family: "Open Sans", serif
+                font-weight: 700
+                margin-bottom: 40px
+
+            .inf-highlight
+                color:  #004d00
+
+            .h6-class
+               
+                font-size: 1.2rem
+
+        .container-genereterVerses
+            width: 50%
+            height: 100%
+            display: flex
+            justify-content: center
+
+
+
             
     
-        .h2-class-div
-            max-width: 50%
-            flex-direction: column
-            display: flex
-            justify-content: center
-            align-items: center
-            text-align: center
-            padding: 20px
-    
-            .h2-class
-                font-size: 2em
-                font-family: "Open Sans", serif
+            
                 
-        .section-infobook
-            position: relative
-            z-index: 2
+    .section-infobook
+        display: flex
+        align-items: center
+        max-width: 100vw
+        width: 75vw
+      
+
+        .modal-img
+            width: 50%
+            height: 100%
             display: flex
             justify-content: center
-            align-items: center
-            flex-direction: column
-            width: 50%
-
+        
             img
                 transition: transform 0.5s ease
-                width: 38rem
-                
+                height: 30rem
+            
+            &:hover
+                transform: scale(1.05)
+    
+        .infobook
+            display: flex
+            height: 100%
+            width: 50%
+            flex-wrap: wrap
+            align-content: center
+            flex-direction: column
 
-                &:hover
-                    transform: scale(1.05)
+            h1
+                font-size: 3.5em
+                font-family: "Open Sans", serif
+                font-weight: 700
+                margin-bottom: 40px
+                color: #004d00
+
+            .infobook-highlight
+                color: #5B3A29
+
+            .h6-infobook-title
+                font-size: 1.2rem
 
     .section-bookadded
         position: relative
