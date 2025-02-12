@@ -3,6 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css"; // Importa os estilos do AOS
 import "./containerBook.sass";
 import ButtomBook from "../buttom-addbook/buttomBook";
+import RetroImage from "../../assets/and Retro!.svg"
 
 export default function ContainerBook() {
   const [dia, setDia] = useState("");
@@ -17,6 +18,7 @@ export default function ContainerBook() {
       <div className="container-dados" id="bg">
         <div className="page-main">
           <div className="left-title" data-aos="fade-up">
+            <img src={RetroImage} alt="Retro Image" className="retro-image" />
           </div>
 
           <div className="form-left" >
