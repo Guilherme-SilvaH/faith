@@ -2,7 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { parse, isValid } from "date-fns";
-import "./ButtomOpem.sass"
+import "./ButtomOpem.sass";
+import Table from "react-bootstrap/Table";
 
 const baseUrlOpemBook = "https://apibible.vercel.app/api/user/show-book";
 
@@ -10,6 +11,7 @@ export default function FilterBooks() {
   const [selectedDate, setSelectedDate] = useState(""); // Data escolhida
   const [books, setBooks] = useState<string[]>([]); // Lista de livros retornados
   const [isLoading, setIsLoading] = useState(false);
+  const [searched, setSearched] = useState(false); // Indica se a busca foi realizada
 
   const handleFilterBooks = async () => {
     const token = localStorage.getItem("authToken");
@@ -30,12 +32,23 @@ export default function FilterBooks() {
     }
 
     setIsLoading(true);
+    setSearched(false); // Resetando antes da busca
+
     try {
-      const response = await axios.get(`${baseUrlOpemBook}?day=${selectedDate}`,  { headers: { Authorization: `Bearer ${token}` } 
+      const response = await axios.get(`${baseUrlOpemBook}?day=${selectedDate}`, {
+        headers: { Authorization: `Bearer ${token}` },
       });
 
-      setBooks(response.data.books || []);
-      toast.success("Livros carregados com sucesso!");
+      const fetchedBooks = response.data.books || [];
+
+      setBooks(fetchedBooks);
+      setSearched(true); 
+
+      if (fetchedBooks.length === 0) {
+        toast.error("Nenhum livro filtrado");
+      } else {
+        toast.success("Livros carregados com sucesso!");
+      }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 401) {
         toast.error("Sessão expirada. Faça login novamente.");
@@ -52,7 +65,7 @@ export default function FilterBooks() {
 
   return (
     <div className="filter-books-container">
-      <h2 className="h2-buttomOpem">Busque os livros adicionado por dadas</h2>
+      <h2 className="h2-buttomOpem">Buscar livros por data</h2>
       <div className="filter-inputs">
         <input
           type="date"
@@ -66,16 +79,26 @@ export default function FilterBooks() {
       </div>
 
       <div className="book-list">
-        <h3>Livros encontrados:</h3>
-        {books.length > 0 ? (
-          <ul className="livros-opem">
-            {books.map((book, index) => (
-              <li key={index}>{book}</li>
-            ))}
-          </ul>
-        ) : (
+        {searched && books.length > 0 ? (
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Dia</th>
+                <th>Livro lido</th>
+              </tr>
+            </thead>
+            <tbody>
+              {books.map((book, index) => (
+                <tr key={index}>
+                  <td>{selectedDate}</td>
+                  <td>{book}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        ) : searched && books.length === 0 ? (
           <p className="livros-opem">Nenhum livro encontrado.</p>
-        )}
+        ) : null}
       </div>
     </div>
   );
