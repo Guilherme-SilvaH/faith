@@ -122,18 +122,21 @@
                         width: 80vw
                         font-size: 16px 
 
-@media only screen and (max-height: 800px)  
-    .bg
-        max-height: 100vh
+@media (max-height: 700 px) screen and (max-height: 800px) 
+        .bg
+            .divPai-container
 
-        .divPai-login
-            .divpai-formulario-login
+                .divpai-formulario
+                    width: 90vw
+                    border-radius: 45px
+                    font-family: "Bungee", serif
+                    height: 85vh
+
+@media (max-height: 0 px) screen and (max-height: 699px) 
+    .bg
+        .divPai-container
+            .divpai-formulario
                 width: 90vw
-                height: 70vh 
-                min-height: 50vh 
-                padding: 20px 
-    
-                .main-form
-                    .form_input
-                        width: 80vw
-                        font-size: 16px 
+                border-radius: 45px
+                font-family: "Bungee", serif
+                height: 72vh
