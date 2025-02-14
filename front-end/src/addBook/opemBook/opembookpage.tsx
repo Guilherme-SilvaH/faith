@@ -42,7 +42,7 @@ export default function OpenBookPage() {
         <div className="infobook">
           <h1>SOBRE</h1>
           <h6 className="h6-infobook-title">
-            Quer conhecer mais sobre a <span className="infobook-highlight">FAITH</span> e seu propósito no desenvolvimento?
+            Quer conhecer mais sobre o <span className="infobook-highlight">FAITH</span> e seu propósito no desenvolvimento?
           </h6>
           <p className="infobook-text-p">{isMobile ? "Clique na imagem abaixo e descubra!" : "Clique na imagem ao lado e descubra!"}</p>
         </div>
