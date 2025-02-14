@@ -1,16 +1,21 @@
 .customModal {
-  // Importar dependências do Bootstrap necessárias
   @import "bootstrap/scss/functions";
   @import "bootstrap/scss/variables";
   @import "bootstrap/scss/mixins";
-
-  // Importar os módulos específicos do Bootstrap que serão aplicados apenas dentro deste escopo
   @import "bootstrap/scss/modal";
   @import "bootstrap/scss/buttons";
 
-  // Seus estilos personalizados para o modal
   .modal-content {
     padding: 20px;
-    // Outros estilos personalizados
+  }
+
+  // Aplicando estilo corretamente ao botão dentro do modal
+  .modalButtom {
+    background-color: #8B5E3C !important; 
+    color: rgb(255, 255, 255) !important;
+    border: none;
+    &:hover {
+      background-color: #5B3A29 !important;
+    }
   }
 }

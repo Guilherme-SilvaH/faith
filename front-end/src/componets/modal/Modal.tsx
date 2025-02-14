@@ -24,7 +24,7 @@ export default function MyVerticallyCenteredModal(props: MyModalProps) {
         </p>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button className={styles.modalButtom} onClick={props.onHide}>Fechar</Button>
       </Modal.Footer>
     </Modal>
   );

@@ -122,17 +122,38 @@ $deep-green: #527853
 
 
 
-@media screen and (max-width: 1024px)
+@media (min-width: 381px) and (max-width: 1024px)
+
     
-    body
         .bg
+            
             .divPai-container
+            
                 .divpai-formulario
-                    width: 80%
+                    width: 90vw
                     border-radius: 45px
                     font-family: "Bungee", serif
-                    height: 35rem
-                        
+                    height: 65vh 
 
 
+@media (min-width: 0px) and (max-width: 375px)
+    .bg
+        .divPai-container
+            
+        
+            .divpai-formulario
+                width: 90vw
+                border-radius: 45px
+                font-family: "Bungee", serif
+                height: 70vh
 
+                
+@media only screen and (width: 375px) and (height: 667px) 
+        .bg
+            .divPai-container
+
+                .divpai-formulario
+                    width: 90vw
+                    border-radius: 45px
+                    font-family: "Bungee", serif
+                    height: 90vh

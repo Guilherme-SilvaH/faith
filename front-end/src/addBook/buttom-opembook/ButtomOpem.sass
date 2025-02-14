@@ -7,6 +7,7 @@
     align-items: center
     margin-top: 4rem
     margin-bottom: 4rem
+    width: 75vw
     
 
     .h2-buttomOpem
@@ -22,6 +23,7 @@
         justify-content: center
         align-items: center
         flex-direction: row
+        
 
         .button-opem
             background-color: #8B5E3C
@@ -75,6 +77,7 @@
         margin-top: 2rem
         width: 40vw
         
+        
 
         th
             color: #004d00
@@ -83,7 +86,7 @@
           
   
             
-@media (max-width: 768px)
+@media (min-width: 391px) and (max-width: 768px)
     .filter-books-container
         width: 100vw
         
@@ -95,14 +98,16 @@
             
 
         .filter-inputs
-            flex-direction: row
+            flex-direction: column
             margin-top: 1rem
 
             .button-opem
                 width: 15rem
 
             .input-button-opem
-                width: auto
+                width: 100%
+                display: flex
+                justify-content: center
 
         .book-list
             margin-top:  30px
@@ -113,7 +118,45 @@
             .livros-opem
                 padding: 40px
                 margin-top: 30px
-          
 
+        .table
+            width: 75vw
 
+@media (min-width: 0px) and (max-width: 390px)
+    .filter-books-container
+        width: 100vw
+        
+
+        .h2-buttomOpem
+            font-size: 33px
+            font-weight: 700
+            padding: 10px
+            
+
+        .filter-inputs
+            flex-direction: column
+            margin-top: 1rem
+
+            .button-opem
+                width: 15rem
+
+            .input-button-opem
+                width: 100%
+                display: flex
+                justify-content: center
+                padding: 10px
+
+        .book-list
+            margin-top:  30px
+
+            h3
+                font-size: 40px
+                color: #000
+
+            .livros-opem
+                padding: 40px
+                margin-top: 30px
+
+        .table
+            width: 75vw
             

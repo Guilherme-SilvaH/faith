@@ -101,6 +101,9 @@
         flex-direction: column
         width: 100vw
         background-color: #f5f5f5
+        align-content: center
+        flex-wrap: wrap
+        
        
 
         .filter-books-container
@@ -113,7 +116,7 @@
 
 
 
-@media (min-width: 0px) and (max-width: 768px)
+@media (min-width: 391px) and (max-width: 768px)
 
     .opem-bookadded
         display: flex
@@ -145,9 +148,10 @@
                 width: 100vw
 
                 .h2-class
-                    font-size: 4em
+                    font-size: 2.2em
                     width: 100vw
                     font-family: "Open Sans", serif
+                    margin-bottom: 20px
 
                 .h6-class
                     font-size: 1rem
@@ -161,6 +165,10 @@
             display: flex
             justify-content: center
             flex-direction: column-reverse
+            margin-top: 3rem
+            text-align: center
+            
+            
         
             .modal-img
                 width: 50%
@@ -170,7 +178,7 @@
             
                 img
                     transition: transform 0.5s ease
-                    height: 30rem
+                    height: 22rem
                 
                 &:hover
                     transform: scale(1.05)
@@ -179,16 +187,121 @@
 
                 display: flex
                 height: 100%
-                width: 100%
+                width: 76vw
                 flex-wrap: wrap
                 align-content: center
                 flex-direction: column
                 align-items: center
+                padding: 0px 25px
+                
+
+                h1
+                    font-size: 3em
+                    margin-bottom: 20px
 
 
                 .h6-infobook-title
-                    font: 1rem
+                    font-size: 1rem
+
+
+        .section-bookadded
+            margin-top: 3rem
+            display: flex
+            justify-content: center
+
+
+@media (min-width: 0px) and (max-width: 390px)
+
+    .opem-bookadded
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        position: relative
+        width: 100vw
+        margin: 0
+        padding: 0
+        max-height: 100%
+    
+        .inf
+        
+            display: flex
+            align-items: center
+            width: 100vw
+            flex-direction: column
+
+
+            .h2-class-div
+                display: flex
+                justify-content: center
+                align-items: center
+                text-align: center
+                padding: 20px
+                margin-top: 0rem
+                line-height: 0.9
+                width: 100vw
+
+                .h2-class
+                    font-size: 2.1em
+                    width: 100vw
+                    font-family: "Open Sans", serif
+                    margin-bottom: 20px
+
+                .h6-class
+                    font-size: 1rem
+                    width: 80vw
+
+
+
+        .section-infobook
+
+            width: 100vw
+            display: flex
+            justify-content: center
+            flex-direction: column-reverse
+            margin-top: 3rem
+            text-align: center
+            
+            
+        
+            .modal-img
+                width: 50%
+                height: 100%
+                display: flex
+                justify-content: center
+            
+                img
+                    transition: transform 0.5s ease
+                    height: 22rem
                 
+                &:hover
+                    transform: scale(1.05)
+
+            .infobook
+
+                display: flex
+                height: 100%
+                width: 100vw
+                flex-wrap: wrap
+                align-content: center
+                flex-direction: column
+                align-items: center
+                padding: 0px 25px
+                
+
+                h1
+                    font-size: 3em
+                    margin-bottom: 20px
+
+
+                .h6-infobook-title
+                    font-size: 1rem
+
+
+        .section-bookadded
+            margin-top: 3rem
+            display: flex
+            justify-content: center
 
         
 
